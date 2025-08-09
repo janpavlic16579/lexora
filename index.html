@@ -84,9 +84,49 @@
     </p>
 
     <div class="mt-8 sm:mt-10">
-      <a href="#demo" class="inline-flex items-center rounded-md bg-white px-5 py-3 text-sm font-medium text-black hover:bg-neutral-200 transition">
-        Preizkusi DEMO
-      </a>
+      <style>
+  .shine-button {
+    background-color: #ffffff; /* osnovna barva gumba */
+    color: black;
+    padding: 0.75rem 1.5rem;
+    border-radius: 0.375rem;
+    font-weight: 500;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    overflow: hidden;
+    transition: background 0.3s ease, color 0.3s ease;
+  }
+
+  /* animacija bleščanja */
+  .shine-button::after {
+    content: '';
+    position: absolute;
+    top: 0; left: -150%;
+    width: 200%;
+    height: 100%;
+    background: linear-gradient(90deg,
+      transparent,
+      rgba(255, 192, 203, 0.6),
+      rgba(255, 165, 0, 0.6),
+      rgba(128, 0, 128, 0.6),
+      transparent
+    );
+    animation: shine 2s infinite;
+    animation-delay: 2s;
+  }
+
+  @keyframes shine {
+    0% { left: -150%; }
+    20% { left: 150%; }
+    100% { left: 150%; }
+  }
+</style>
+
+<a href="#demo" class="shine-button">
+  Preizkusi DEMO
+</a>
     </div>
   </div>
 </section>
