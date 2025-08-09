@@ -69,14 +69,20 @@
 
 <!-- HERO: zajame cel zaslon (tudi na iOS), brez belega roba spodaj -->
 <section class="bg-black text-white">
-  <div class="mx-auto max-w-6xl px-6 pt-10 sm:pt-14 md:pt-28 pb-16 md:pb-24 text-center">
-    <h1 class="display font-serif text-[34px] sm:text-5xl md:text-7xl leading-tight">
+  <!-- notranji container z natančno višino: 100svh - 56px (h-14) -->
+  <div class="mx-auto max-w-6xl px-6
+              min-h-[calc(100svh-56px)]
+              flex flex-col items-center justify-center
+              text-center">
+    <h1 class="display font-serif text-4xl sm:text-5xl md:text-7xl leading-tight">
       Revolucioniraj svojo pravno prakso z
       <span class="bg-gradient-to-r from-pink-400 via-orange-400 to-purple-500 bg-clip-text text-transparent">AI</span>
     </h1>
+
     <p class="mt-4 sm:mt-6 text-base sm:text-lg text-neutral-300 max-w-2xl mx-auto">
       Odklenite nov nivo produktivnosti. Osredotočite se na primere, ne na papirje.
     </p>
+
     <div class="mt-8 sm:mt-10">
       <a href="#demo" class="inline-flex items-center rounded-md bg-white px-5 py-3 text-sm font-medium text-black hover:bg-neutral-200 transition">
         Preizkusi DEMO
