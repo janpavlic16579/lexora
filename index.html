@@ -101,32 +101,33 @@
   .shine-button::after {
     content: '';
     position: absolute;
-    top: 0; 
+    top: -200%;
     left: -200%;
     width: 300%;
-    height: 100%;
+    height: 300%;
     background: linear-gradient(
-      90deg,
+      135deg, /* 135° = diagonalno iz zgornjega levega v spodnji desni */
       transparent,
       rgba(255, 192, 203, 0.5),
       rgba(255, 165, 0, 0.5),
       rgba(128, 0, 128, 0.5),
       transparent
     );
-    animation: shine 3s ease-in-out infinite;
-    animation-delay: 1s;
+    animation: shineDiagonal 6s ease-in-out infinite;
+    animation-delay: 2s;
   }
 
-  @keyframes shine {
-    0% { left: -200%; }
-    20% { left: 100%; }
-    100% { left: 100%; }
+  @keyframes shineDiagonal {
+    0% { top: -200%; left: -200%; }
+    20% { top: 0%; left: 0%; }
+    100% { top: 0%; left: 0%; }
   }
 </style>
 
 <a href="#demo" class="shine-button">
   Preizkusi DEMO
 </a>
+
     </div>
   </div>
 </section>
