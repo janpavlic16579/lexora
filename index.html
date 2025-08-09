@@ -63,23 +63,95 @@
 <body class="bg-white text-neutral-900 antialiased">
 
   <!-- NAV -->
+<!-- HEADER — Harvey-style -->
 <header class="fixed top-0 inset-x-0 z-50 text-white
   bg-gradient-to-b from-neutral-700/70 via-neutral-900/95 to-black
   pt-[env(safe-area-inset-top)]">
-  <div class="mx-auto max-w-6xl px-4 h-14 flex items-center justify-between">
-    <a class="font-serif text-2xl" href="#">Lexora</a>
+  <div class="mx-auto max-w-7xl px-4 lg:px-6 h-16 flex items-center justify-between">
 
-    <!-- desktop nav -->
+    <!-- Left: Logo -->
+    <a class="font-serif text-2xl tracking-tight" href="#">Lexora</a>
+
+    <!-- Center: Nav (desktop) -->
     <nav class="hidden md:flex items-center gap-8 text-sm text-neutral-300">
-      <a class="hover:text-white" href="#platform">Platform</a>
-      <a class="hover:text-white" href="#solutions">Rešitve</a>
+      <!-- Dropdown: Platform -->
+      <div class="relative group">
+        <button class="inline-flex items-center gap-1 hover:text-white">
+          Platform
+          <svg width="14" height="14" viewBox="0 0 24 24" class="opacity-80">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <!-- Panel -->
+        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100
+                    transition duration-200
+                    absolute left-1/2 -translate-x-1/2 mt-3 w-[560px]
+                    rounded-lg border border-white/10 bg-black/90 backdrop-blur p-4">
+          <div class="grid grid-cols-2 gap-3 text-neutral-200">
+            <a href="#product" class="rounded-md p-3 hover:bg-white/5">
+              <p class="font-medium text-white">Asistent</p>
+              <p class="text-xs text-neutral-400 mt-1">Raziskave z navedbami virov.</p>
+            </a>
+            <a href="#product" class="rounded-md p-3 hover:bg-white/5">
+              <p class="font-medium text-white">Delovni tokovi</p>
+              <p class="text-xs text-neutral-400 mt-1">Playbooki in avtomatizacije.</p>
+            </a>
+            <a href="#security" class="rounded-md p-3 hover:bg-white/5">
+              <p class="font-medium text-white">Varnost & upravljanje</p>
+              <p class="text-xs text-neutral-400 mt-1">SSO, revizije, rezidenti.</p>
+            </a>
+            <a href="#integrations" class="rounded-md p-3 hover:bg-white/5">
+              <p class="font-medium text-white">Integracije</p>
+              <p class="text-xs text-neutral-400 mt-1">DMS, SharePoint, Slack …</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Dropdown: Rešitve -->
+      <div class="relative group">
+        <button class="inline-flex items-center gap-1 hover:text-white">
+          Rešitve
+          <svg width="14" height="14" viewBox="0 0 24 24" class="opacity-80">
+            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
+          </svg>
+        </button>
+        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100
+                    transition duration-200
+                    absolute left-1/2 -translate-x-1/2 mt-3 w-[560px]
+                    rounded-lg border border-white/10 bg-black/90 backdrop-blur p-4">
+          <div class="grid grid-cols-2 gap-3 text-neutral-200">
+            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5">
+              <p class="font-medium text-white">Pogodbe & M&A</p>
+              <p class="text-xs text-neutral-400 mt-1">DD, klavzule, primerjave.</p>
+            </a>
+            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5">
+              <p class="font-medium text-white">Sodni spisi</p>
+              <p class="text-xs text-neutral-400 mt-1">Osnutki in raziskave.</p>
+            </a>
+            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5">
+              <p class="font-medium text-white">Regulatorno</p>
+              <p class="text-xs text-neutral-400 mt-1">Politike in kontrole.</p>
+            </a>
+            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5">
+              <p class="font-medium text-white">In‑house pravniki</p>
+              <p class="text-xs text-neutral-400 mt-1">Matter‑templati, intake.</p>
+            </a>
+          </div>
+        </div>
+      </div>
+
+      <!-- Nav items (brez dropdowna) -->
       <a class="hover:text-white" href="#customers">Stranke</a>
       <a class="hover:text-white" href="#security">Varnost</a>
       <a class="hover:text-white" href="#news">Novice</a>
       <a class="hover:text-white" href="#company">Podjetje</a>
     </nav>
 
-    <!-- mobile button -->
+    <!-- Right: Login -->
+    <a href="#login" class="hidden md:block text-sm text-neutral-300 hover:text-white">Prijava</a>
+
+    <!-- Mobile hamburger -->
     <button id="mbtn" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded hover:bg-white/5" aria-label="Menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white">
         <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
@@ -87,18 +159,37 @@
     </button>
   </div>
 
-  <!-- mobile panel -->
+  <!-- Mobile sheet -->
   <div id="mpanel" class="hidden border-t border-white/10 bg-black/90 backdrop-blur">
-    <nav class="mx-auto max-w-6xl px-4 py-4 flex flex-col gap-4 text-base text-neutral-200">
-      <a href="#platform">Platform</a>
-      <a href="#solutions">Rešitve</a>
+    <nav class="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-4 text-base text-neutral-200">
+      <details>
+        <summary class="cursor-pointer py-2">Platform</summary>
+        <div class="pl-3 space-y-2 text-neutral-300">
+          <a href="#product" class="block">Asistent</a>
+          <a href="#product" class="block">Delovni tokovi</a>
+          <a href="#security" class="block">Varnost & upravljanje</a>
+          <a href="#integrations" class="block">Integracije</a>
+        </div>
+      </details>
+      <details>
+        <summary class="cursor-pointer py-2">Rešitve</summary>
+        <div class="pl-3 space-y-2 text-neutral-300">
+          <a href="#solutions" class="block">Pogodbe & M&A</a>
+          <a href="#solutions" class="block">Sodni spisi</a>
+          <a href="#solutions" class="block">Regulatorno</a>
+          <a href="#solutions" class="block">In‑house pravniki</a>
+        </div>
+      </details>
       <a href="#customers">Stranke</a>
       <a href="#security">Varnost</a>
       <a href="#news">Novice</a>
       <a href="#company">Podjetje</a>
+      <a href="#login" class="pt-2 text-neutral-300">Prijava</a>
     </nav>
   </div>
 </header>
+<!-- Spacer (višina headerja) -->
+<div class="h-16"></div>
 <!-- spacer, da vsebina ne zleze pod fixed header -->
 <div class="h-14"></div>
 
@@ -201,5 +292,6 @@
   if (btn && panel) btn.addEventListener('click', () => panel.classList.toggle('hidden'));
   const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
 </script>
+
 </body>
 </html>
