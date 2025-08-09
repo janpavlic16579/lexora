@@ -1,0 +1,149 @@
+<!doctype html>
+<html lang="sl">
+<head>
+  <meta charset="utf-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1"/>
+  <title>Lexora — AI za pravnike</title>
+
+  <!-- Tailwind CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          colors: {
+            ink: { 950:"#0B0B0B", 900:"#111111", 800:"#1a1a1a", 700:"#2a2a2a", 300:"#d6d6d6" }
+          },
+          fontFamily: {
+            serif: ['Georgia','Times New Roman','serif'],
+            sans: ['Inter','system-ui','Arial','sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <style>.display{letter-spacing:-0.01em}</style>
+</head>
+<body class="bg-white text-neutral-900 antialiased">
+
+  <!-- NAV -->
+  <header class="bg-ink-950 text-white">
+    <div class="mx-auto max-w-6xl px-6">
+      <div class="flex h-16 items-center justify-between">
+        <a class="font-serif text-2xl" href="#">Lexora</a>
+        <nav class="hidden md:flex items-center gap-8 text-sm text-neutral-300">
+          <a class="hover:text-white" href="#platform">Platform</a>
+          <a class="hover:text-white" href="#solutions">Rešitve</a>
+          <a class="hover:text-white" href="#customers">Stranke</a>
+          <a class="hover:text-white" href="#security">Varnost</a>
+          <a class="hover:text-white" href="#news">Novice</a>
+          <a class="hover:text-white" href="#company">Podjetje</a>
+        </nav>
+        <div class="hidden md:block">
+          <a href="#login" class="text-sm text-neutral-300 hover:text-white">Prijava</a>
+        </div>
+        <button id="mbtn" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded hover:bg-ink-800" aria-label="Menu">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-neutral-200">
+            <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
+          </svg>
+        </button>
+      </div>
+      <div id="mpanel" class="hidden border-t border-ink-800 pb-6 md:hidden">
+        <nav class="flex flex-col gap-4 pt-4 text-neutral-300">
+          <a class="hover:text-white" href="#platform">Platform</a>
+          <a class="hover:text-white" href="#solutions">Rešitve</a>
+          <a class="hover:text-white" href="#customers">Stranke</a>
+          <a class="hover:text-white" href="#security">Varnost</a>
+          <a class="hover:text-white" href="#news">Novice</a>
+          <a class="hover:text-white" href="#company">Podjetje</a>
+          <a class="hover:text-white pt-2" href="#login">Prijava</a>
+        </nav>
+      </div>
+    </div>
+  </header>
+
+  <!-- HERO -->
+  <section class="bg-ink-950 text-white">
+    <div class="mx-auto max-w-6xl px-6 py-24 md:py-32 text-center">
+      <h1 class="display font-serif text-5xl md:text-7xl leading-tight">
+        Revolucioniraj svojo poslovno prakso z umetno inteligenco
+      </h1>
+      <p class="mt-6 text-lg text-neutral-300 max-w-2xl mx-auto">
+        Domain-specific AI za odvetniške pisarne, pravne službe in ponudnike pravnih storitev.
+      </p>
+      <div class="mt-10">
+        <a href="#demo" class="inline-flex items-center rounded-md bg-white px-5 py-3 text-sm font-medium text-ink-950 hover:bg-neutral-200 transition">
+          Request a Demo
+        </a>
+      </div>
+    </div>
+
+    <!-- optional hero media strip -->
+    <div class="mx-auto max-w-6xl px-6 pb-12">
+      <div class="relative overflow-hidden rounded-lg ring-1 ring-white/10">
+        <video class="w-full h-[320px] object-cover" src="" poster="" autoplay muted loop playsinline></video>
+      </div>
+    </div>
+  </section>
+
+  <!-- VIDEO BLOCK -->
+  <section class="bg-white">
+    <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+      <div class="mx-auto max-w-3xl text-center">
+        <h2 class="font-serif text-3xl md:text-4xl">Demo posnetek</h2>
+        <p class="mt-3 text-neutral-600">Kratek ogled Lexore v realnem poteku dela.</p>
+      </div>
+
+      <div class="mt-10 rounded-2xl border border-neutral-200 bg-white shadow-[0_10px_40px_rgba(0,0,0,0.06)] overflow-hidden relative">
+        <div class="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_60%_at_50%_30%,black,transparent)] bg-[radial-gradient(50%_50%_at_50%_0%,#f5f5f5,transparent)]"></div>
+
+        <div class="relative">
+          <div class="aspect-video bg-neutral-100">
+            <video class="w-full h-full object-cover" controls playsinline poster="assets/poster.jpg">
+              <source src="assets/lexora-demo.mp4" type="video/mp4"/>
+              <source src="assets/lexora-demo.webm" type="video/webm"/>
+              <source src="assets/lexora-demo.mov" type="video/quicktime"/>
+              Vaš brskalnik ne podpira video oznake.
+            </video>
+          </div>
+
+          <div class="flex items-center justify-between gap-4 border-t border-neutral-200 bg-white/70 backdrop-blur px-4 py-3">
+            <div class="text-sm">
+              <p class="font-medium">Lexora — kratek pregled</p>
+              <p class="text-neutral-600">1:30 min • raziskave • osnutki • revizija</p>
+            </div>
+            <a href="#demo" class="shrink-0 inline-flex items-center rounded-md bg-neutral-900 px-4 py-2 text-xs font-medium text-white hover:bg-neutral-800">
+              Rezerviraj predstavitev
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer class="bg-ink-950 text-neutral-300">
+    <div class="mx-auto max-w-6xl px-6 py-10">
+      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+        <p class="font-serif text-xl text-white">Lexora</p>
+        <nav class="flex flex-wrap gap-x-6 gap-y-3 text-sm">
+          <a class="hover:text-white" href="#platform">Platform</a>
+          <a class="hover:text-white" href="#security">Varnost</a>
+          <a class="hover:text-white" href="#customers">Stranke</a>
+          <a class="hover:text-white" href="#company">Podjetje</a>
+          <a class="hover:text-white" href="#privacy">Zasebnost</a>
+          <a class="hover:text-white" href="#terms">Pogoji</a>
+        </nav>
+      </div>
+      <p class="mt-6 text-xs text-neutral-500">© <span id="y"></span> Lexora</p>
+    </div>
+  </footer>
+
+  <script>
+    const btn = document.getElementById('mbtn');
+    const panel = document.getElementById('mpanel');
+    if (btn) btn.addEventListener('click', () => panel.classList.toggle('hidden'));
+    const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
+  </script>
+</body>
+</html>
