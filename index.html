@@ -23,6 +23,57 @@
     }
   </script>
   <style>.display{letter-spacing:-0.01em}</style>
+
+  <style>
+  .btn-demo{
+    background:#fff;            /* osnovna barva – kot prej */
+    color:#000;
+    padding:.75rem 1.5rem;
+    border-radius:.5rem;        /* malo bolj mehko */
+    font-weight:600;
+    display:inline-flex;
+    align-items:center;
+    justify-content:center;
+    gap:.5rem;
+    position:relative;
+    overflow:hidden;
+    box-shadow:0 6px 20px rgba(0,0,0,.15);
+    border:1px solid rgba(255,255,255,.1);
+    transition:transform .15s ease, box-shadow .2s ease, opacity .2s ease;
+  }
+  .btn-demo:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(0,0,0,.22) }
+  .btn-demo:active{ transform:translateY(0) }
+
+  /* Diagonalni “shine” – počasen in subtilen */
+  .btn-demo::after{
+    content:"";
+    position:absolute;
+    inset:-200%;
+    background:linear-gradient(135deg,
+      rgba(255,255,255,0) 35%,
+      rgba(255, 192, 203, .55),
+      rgba(255,165,0,.55),
+      rgba(128,0,128,.55),
+      rgba(255,255,255,0) 65%);
+    filter:blur(8px);                    /* mehkejši rob */
+    transform:translate(-120%, -120%);
+    animation:shineDiag 8s ease-in-out infinite;
+    pointer-events:none;
+    mix-blend-mode:screen;               /* da ostane bel gumb viden */
+  }
+  @keyframes shineDiag{
+    0%   { transform:translate(-120%,-120%); opacity:0; }
+    8%   { transform:translate( 120%, 120%); opacity:.85; } /* ~0.6s “flash” */
+    20%  { transform:translate( 120%, 120%); opacity:0; }   /* izgine */
+    100% { transform:translate( 120%, 120%); opacity:0; }   /* pavza do naslednjega */
+  }
+
+  /* Dostopnost: manj gibanja, če uporabnik to želi */
+  @media (prefers-reduced-motion: reduce){
+    .btn-demo::after{ animation:none }
+  }
+</style>
+
 </head>
 <body class="bg-white text-neutral-900 antialiased">
 
@@ -84,58 +135,7 @@
     </p>
 
     <div class="mt-8 sm:mt-10">
-        <style>
-          .btn-demo{
-            background:#fff;            /* osnovna barva – kot prej */
-            color:#000;
-            padding:.75rem 1.5rem;
-            border-radius:.5rem;        /* malo bolj mehko */
-            font-weight:600;
-            display:inline-flex;
-            align-items:center;
-            justify-content:center;
-            gap:.5rem;
-            position:relative;
-            overflow:hidden;
-            box-shadow:0 6px 20px rgba(0,0,0,.15);
-            border:1px solid rgba(255,255,255,.1);
-            transition:transform .15s ease, box-shadow .2s ease, opacity .2s ease;
-          }
-          .btn-demo:hover{ transform:translateY(-1px); box-shadow:0 10px 28px rgba(0,0,0,.22) }
-          .btn-demo:active{ transform:translateY(0) }
-        
-          /* Diagonalni “shine” – počasen in subtilen */
-          .btn-demo::after{
-            content:"";
-            position:absolute;
-            inset:-200%;
-            background:linear-gradient(135deg,
-              rgba(255,255,255,0) 35%,
-              rgba(255, 192, 203, .55),
-              rgba(255,165,0,.55),
-              rgba(128,0,128,.55),
-              rgba(255,255,255,0) 65%);
-            filter:blur(8px);                    /* mehkejši rob */
-            transform:translate(-120%, -120%);
-            animation:shineDiag 8s ease-in-out infinite;
-            pointer-events:none;
-            mix-blend-mode:screen;               /* da ostane bel gumb viden */
-          }
-          @keyframes shineDiag{
-            0%   { transform:translate(-120%,-120%); opacity:0; }
-            8%   { transform:translate( 120%, 120%); opacity:.85; } /* ~0.6s “flash” */
-            20%  { transform:translate( 120%, 120%); opacity:0; }   /* izgine */
-            100% { transform:translate( 120%, 120%); opacity:0; }   /* pavza do naslednjega */
-          }
-        
-          /* Dostopnost: manj gibanja, če uporabnik to želi */
-          @media (prefers-reduced-motion: reduce){
-            .btn-demo::after{ animation:none }
-          }
-      </style>
-
       <a href="#demo" class="btn-demo">Preizkusi DEMO</a>
-
     </div>
   </div>
 </section>
