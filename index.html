@@ -25,40 +25,32 @@
 
 <style>
   .btn-demo {
-    position: relative;
-    display: inline-flex;
-    align-items: center;
-    justify-content: center;
-    padding: .85rem 1.6rem;
-    font-weight: 700;
-    border-radius: .55rem;
-    color: #fff; /* bele črke */
-    border: none;
-    overflow: hidden;
-    z-index: 0;
-    background: linear-gradient(135deg, #ec4899, #f97316, #8b5cf6);
-    background-size: 300% 300%;
-    animation: gradientFlow 6s ease infinite;
-    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
-  }
+  background: linear-gradient(135deg, #ec4899, #f97316, #8b5cf6);
+  background-size: 300% 300%;
+  animation: btnFlow 6s ease infinite;
+  color: #fff;
+  padding: 0.75rem 1.5rem;
+  border-radius: 0.5rem;
+  font-weight: 600;
+  font-size: 1rem; /* vrača prvotno velikost besedila */
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  box-shadow: none;
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
 
-  /* Konstantno premikanje gradienta */
-  @keyframes gradientFlow {
-    0% {
-      background-position: 0% 0%;
-    }
-    50% {
-      background-position: 100% 100%;
-    }
-    100% {
-      background-position: 0% 0%;
-    }
-  }
-   /* Hover efekt */
-  .btn-demo:hover {
-    transform: scale(1.08);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
-  }
+.btn-demo:hover {
+  transform: scale(1.05);
+  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
+}
+
+@keyframes btnFlow {
+  0%   { background-position: 0% 0%; }
+  50%  { background-position: 100% 100%; }
+  100% { background-position: 0% 0%; }
+}
 
   /* Animirani gradient za besedo AI */
   .ai-anim{
@@ -224,8 +216,8 @@
   <div class="mx-auto max-w-6xl px-6 min-h-[calc(100svh-56px)]
               flex flex-col items-center justify-center text-center">
     <h1 class="display font-serif text-4xl sm:text-5xl md:text-7xl leading-tight">
-      Revolucioniraj svojo pravno prakso z
-      <span class="ai-anim"> <b> AI </b></span>
+      
+      Revolucioniraj svojo pravno prakso z <span class="ai-anim">  AI </span>
 
     <p class="mt-4 sm:mt-6 text-base sm:text-lg text-neutral-300 max-w-2xl mx-auto">
       Odklenite nov nivo produktivnosti. Osredotočite se na primere, ne na papirje.
