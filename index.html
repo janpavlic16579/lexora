@@ -57,11 +57,34 @@
    /* Hover efekt */
   .btn-demo:hover {
     transform: scale(1.08);
-    box-shadow: 0 0 20px rgba(255, 255, 255, 0.8);
+    box-shadow: 0 0 20px rgba(255, 255, 255, 0.5);
   }
-  
 </style>
+<style>
+  /* Animirani gradient za besedo AI */
+  .ai-anim{
+    /* isti barvni set kot gumb */
+    background: linear-gradient(135deg, #ec4899, #f97316, #8b5cf6);
+    background-size: 300% 300%;
+    background-position: 0% 0%;
+    -webkit-background-clip: text;
+            background-clip: text;
+    color: transparent;            /* pokaži samo gradient */
+    display: inline-block;         /* da animacija lepo teče */
+    animation: aiFlow 6s ease infinite;
+  }
 
+  @keyframes aiFlow{
+    0%   { background-position:   0%   0%; }
+    50%  { background-position: 100% 100%; }
+    100% { background-position:   0%   0%; }
+  }
+
+  /* Spoštuj zmanjšano gibanje, če uporabnik to želi */
+  @media (prefers-reduced-motion: reduce){
+    .ai-anim{ animation: none; }
+  }
+</style>
 
 </head>
 
@@ -203,8 +226,7 @@
               flex flex-col items-center justify-center text-center">
     <h1 class="display font-serif text-4xl sm:text-5xl md:text-7xl leading-tight">
       Revolucioniraj svojo pravno prakso z
-      <span class="bg-gradient-to-r from-pink-400 via-orange-400 to-purple-500 bg-clip-text text-transparent">AI</span>
-    </h1>
+      <span class="ai-anim"> <b> AI </b></span>
 
     <p class="mt-4 sm:mt-6 text-base sm:text-lg text-neutral-300 max-w-2xl mx-auto">
       Odklenite nov nivo produktivnosti. Osredotočite se na primere, ne na papirje.
