@@ -24,51 +24,35 @@
    </script>
 
 <style>
-  .btn-demo{
-    background:#fff;                 /* osnovna bela */
-    border:1px solid rgba(255,255,255,.14);
-    box-shadow:0 8px 24px rgba(0,0,0,.18);
-    color:#000;                      /* privzeto črn tekst */
-    padding:.85rem 1.6rem;
-    border-radius:.55rem;
-    font-weight:700;
-    display:inline-flex; align-items:center; justify-content:center;
-    position:relative; overflow:hidden; isolation:isolate;
+  .btn-demo {
+    position: relative;
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    padding: .85rem 1.6rem;
+    font-weight: 700;
+    border-radius: .55rem;
+    color: #fff; /* bele črke */
+    border: none;
+    overflow: hidden;
+    z-index: 0;
+    background: linear-gradient(135deg, #ec4899, #f97316, #8b5cf6);
+    background-size: 300% 300%;
+    animation: gradientFlow 6s ease infinite;
+    box-shadow: 0 8px 24px rgba(0, 0, 0, .18);
   }
 
-  /* vidni, neprosojni barvni sweep (AI barve) */
-  .btn-demo::before{
-    content:"";
-    position:absolute; z-index:0;
-    top:-160%; left:-160%;
-    width:320%; height:320%;
-    background: linear-gradient(135deg, #ec4899, #f97316, #8b5cf6); /* pink→orange→purple */
-    transform:translate3d(0,0,0);
-    opacity:0;
-    animation: sweep 3s ease-in-out infinite;
-    pointer-events:none;
-  }
-
-  /* sinhronizirana menjava barve teksta zaradi berljivosti */
-  .btn-demo .label{
-    position:relative; z-index:1;
-    animation: labelColor 3s ease-in-out infinite;
-  }
-
-  /* sweep traja 1.5 s znotraj 3 s cikla */
-  @keyframes sweep{
-    0%   { opacity:0; transform:translate3d(-10%,-10%,0); }
-    5%   { opacity:1; }
-    50%  { opacity:1; transform:translate3d(120%,120%,0); }  /* konec 1.5 s */
-    51%  { opacity:0; }
-    100% { opacity:0; transform:translate3d(120%,120%,0); }  /* pavza do ponovitve */
-  }
-
-  /* tekst: črn → bel → črn (ko je sweep čez gumb) */
-  @keyframes labelColor{
-    0%,15%   { color:#000; }
-    20%,45%  { color:#fff; }   /* v sredi animacije */
-    50%,100% { color:#000; }
+  /* Konstantno premikanje gradienta */
+  @keyframes gradientFlow {
+    0% {
+      background-position: 0% 0%;
+    }
+    50% {
+      background-position: 100% 100%;
+    }
+    100% {
+      background-position: 0% 0%;
+    }
   }
 </style>
 
@@ -220,9 +204,7 @@
       Odklenite nov nivo produktivnosti. Osredotočite se na primere, ne na papirje.
     </p>
     
-    <a href="#demo" class="btn-demo mt-8 sm:mt-10">
-      <span class="label">Preizkusi DEMO</span>
-    </a>
+    <a href="#demo" class="btn-demo mt-8 sm:mt-10">Preizkusi DEMO</a>
     
   </div>
 </section>
