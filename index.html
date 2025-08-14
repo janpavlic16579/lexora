@@ -56,6 +56,43 @@
       .ai-anim, .btn-demo{ animation:none; }
     }
   </style>
+  <!-- Dodaj v <head> -->
+<link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
+<script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+
+<section class="bg-ink-950 text-white py-16">
+  <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6">
+    
+    <!-- Leva stran: primer uporabe -->
+    <div data-aos="fade-right" class="bg-ink-800 p-6 rounded-xl shadow-lg">
+      <p class="mb-4">Summarize the operating covenants for your client's agreement.</p>
+      <div class="bg-white text-black rounded-lg p-4 mb-4">
+        <div class="border p-3 rounded-lg flex items-center gap-3">
+          📄 Merger Agreement.docx
+        </div>
+      </div>
+      <button class="bg-black text-white px-6 py-2 rounded-lg">Ask Lexora</button>
+    </div>
+
+    <!-- Desna stran: opis -->
+    <div data-aos="fade-left">
+      <h2 class="text-3xl font-bold mb-4">Assistant<br>Tailored to Your Expertise</h2>
+      <p class="text-gray-300 mb-4">
+        Delegate complex legal tasks in natural language to your AI-powered legal assistant.
+      </p>
+      <a href="#assistant" class="text-blue-400 hover:underline">Explore Assistant →</a>
+    </div>
+
+  </div>
+</section>
+
+<script>
+  AOS.init({
+    duration: 800,
+    once: true
+  });
+</script>
+
 </head>
 
 <body class="bg-black text-white antialiased">
