@@ -1,14 +1,3 @@
-Tu je **celotna posodobljena stran**.
-Dodani so 3 bloki pod hero-jem (pred videom), ki:
-
-* se **interaktivno premikajo** med scrollom (parallax + depth),
-* imajo **“žive” UI animacije**, ki simulirajo uporabo Lexore (analiza povzetka, redline, generiranje osnutka),
-* naslovi so **serif**, ostalo **sans**,
-* CTA‑ji in modre besede uporabljajo **isti gradient flow** kot “AI” v heroju.
-
-Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
-
-```html
 <!doctype html>
 <html lang="sl">
 <head>
@@ -49,7 +38,7 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
       border:none; box-shadow:none;
       transition: transform .25s ease, box-shadow .25s ease;
     }
-    .btn-demo:hover{ transform: scale(1.05); box-shadow:0 0 15px rgba(255,255,255,.8); }
+    .btn-demo:hover{ transform: translateY(-2px) scale(1.03); box-shadow:0 0 18px rgba(255,255,255,.8); }
     @keyframes btnFlow{ 0%{background-position:0% 0%} 50%{background-position:100% 100%} 100%{background-position:0% 0%} }
 
     /* ===== Gradient flow za AI in CTA-je ===== */
@@ -73,6 +62,10 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
     .reveal-sect{ opacity:0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
     .revealed{ opacity:1; transform:none; }
 
+    /* Kartice rahlo “zaplavajo” na hover */
+    .floaty{ transition: transform .25s ease, box-shadow .25s ease; }
+    .floaty:hover{ transform: translateY(-4px); box-shadow: 0 10px 35px rgba(0,0,0,.45); }
+
     @media (prefers-reduced-motion: reduce){
       .ai-anim, .btn-demo{ animation:none; }
       .parallax{ transform:none !important; }
@@ -81,12 +74,10 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
     }
 
     /* ====== UI ANIMACIJE — simulacija uporabe ====== */
-    /* skeleton pulsing */
     .ui-pulse{ background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.12), rgba(255,255,255,.06));
       background-size: 200% 100%; animation: pulse 1.6s ease-in-out infinite; }
     @keyframes pulse{ 0%{background-position:200% 0} 100%{background-position:-200% 0} }
 
-    /* blinking cursor */
     .ui-cursor{ position:relative; }
     .ui-cursor::after{
       content:""; position:absolute; top:0; bottom:0; width:2px; right:-2px; background:#111;
@@ -94,12 +85,10 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
     }
     @keyframes blink{ 0%,49%{opacity:1} 50%,100%{opacity:0} }
 
-    /* typing simulation (width reveal) */
     .ui-typing{ white-space:nowrap; overflow:hidden; border-right:2px solid transparent;
       animation: typing 3.5s steps(28,end) infinite alternate; }
     @keyframes typing{ 0%{width:0ch} 100%{width:28ch} }
 
-    /* progress bar */
     .ui-progress{ position:relative; height:8px; border-radius:999px; overflow:hidden; background:rgba(255,255,255,.1); }
     .ui-progress::before{
       content:""; position:absolute; inset:0; background:linear-gradient(90deg,#ec4899,#f97316,#8b5cf6);
@@ -107,14 +96,12 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
     }
     @keyframes prog{ 0%{transform:scaleX(0)} 40%{transform:scaleX(0.7)} 60%{transform:scaleX(0.5)} 100%{transform:scaleX(1)} }
 
-    /* redline lines in/out */
     .ui-line{ height:14px; border-radius:4px; margin:6px 0; opacity:.95; transform: translateX(-8px); }
     .ui-line.add{ background:rgba(34,197,94,.3); border:1px solid rgba(34,197,94,.6); }
     .ui-line.del{ background:rgba(239,68,68,.25); border:1px solid rgba(239,68,68,.6); }
     .ui-line-in{ animation: lineIn .8s ease forwards; }
     @keyframes lineIn{ from{opacity:0; transform:translateX(-16px)} to{opacity:1; transform:none} }
 
-    /* drafting text appearing in blocks */
     .ui-draft{ line-height:1.55; }
     .ui-draft span{ opacity:0; display:inline-block; }
     .ui-draft-in span{ animation: draftIn .7s ease forwards; }
@@ -134,17 +121,24 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
     <a class="font-serif text-2xl tracking-tight" href="#">Lexora</a>
 
     <nav class="hidden md:flex items-center gap-8 text-sm text-neutral-300">
-      <a class="hover:text-white" href="#platform">Platform</a>
-      <a class="hover:text-white" href="#solutions">Rešitve</a>
-      <a class="hover:text-white" href="#customers">Stranke</a>
-      <a class="hover:text-white" href="#security">Varnost</a>
+      <a class="hover:text-white" href="#showcase">Funkcije</a>
+      <a class="hover:text-white" href="#demo">Video</a>
+      <a class="hover:text-white" href="#contact">Povpraševanje</a>
     </nav>
 
-    <a href="#login" class="hidden md:block text-sm text-neutral-300 hover:text-white">Prijava</a>
+    <a href="#contact" class="hidden md:block btn-demo text-sm">Kontakt</a>
 
     <button id="mbtn" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded hover:bg-white/5" aria-label="Menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </button>
+  </div>
+
+  <div id="mpanel" class="hidden border-t border-white/10 bg-black/90 backdrop-blur">
+    <nav class="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-4 text-base text-neutral-200">
+      <a href="#showcase">Funkcije</a>
+      <a href="#demo">Video</a>
+      <a href="#contact">Povpraševanje</a>
+    </nav>
   </div>
 </header>
 
@@ -160,7 +154,7 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
     <p class="display font-sans mt-4 sm:mt-6 text-base sm:text-lg text-neutral-300 max-w-2xl mx-auto">
       Odklenite nov nivo produktivnosti. Osredotočite se na primere, ne na papirje.
     </p>
-    <a href="#demo" class="btn-demo mt-8 sm:mt-10">Preizkusi DEMO</a>
+    <a href="#showcase" class="btn-demo mt-8 sm:mt-10">Oglej si funkcije</a>
   </div>
 </section>
 
@@ -171,19 +165,15 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
     <!-- 1) Summarize -->
     <div class="reveal-sect grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <!-- UI animacija -->
-      <div class="parallax" data-speed="0.25">
+      <div class="parallax floaty" data-speed="0.25">
         <div class="bg-ink-800/80 backdrop-blur rounded-2xl p-6 shadow-2xl">
           <p class="font-sans text-neutral-200 mb-4">Summarize the operating covenants for your client's agreement.</p>
 
-          <!-- Drop area -->
           <div class="rounded-xl border border-white/10 bg-black/40 p-4">
             <div class="rounded-lg bg-white text-black p-4 flex items-center gap-3">
               <span>📄</span><span class="font-medium">Merger Agreement.docx</span>
             </div>
-            <!-- progress -->
             <div class="ui-progress mt-4 rounded-full"></div>
-
-            <!-- summary “typing” -->
             <div class="mt-5 bg-white rounded-lg p-4 text-black">
               <div class="text-xs uppercase tracking-wide text-neutral-500 mb-1">Summary</div>
               <div class="ui-typing font-sans">
@@ -204,7 +194,7 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
         <p class="font-sans text-neutral-300 mb-4">
           Delegirajte kompleksne pravne naloge v naravnem jeziku svojemu AI asistentu.
         </p>
-        <a href="#assistant" class="font-sans ai-anim inline-flex items-center gap-2">Explore Assistant →</a>
+        <a href="#demo" class="font-sans ai-anim inline-flex items-center gap-2">Explore Assistant →</a>
       </div>
     </div>
 
@@ -218,11 +208,11 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
         <p class="font-sans text-neutral-300 mb-4">
           Avtomatski predlogi popravkov in razlage tveganj z navedbo razlogov.
         </p>
-        <a href="#workflows" class="font-sans ai-anim inline-flex items-center gap-2">See Workflows →</a>
+        <a href="#demo" class="font-sans ai-anim inline-flex items-center gap-2">See Workflows →</a>
       </div>
 
       <!-- UI animacija -->
-      <div class="parallax order-1 md:order-2" data-speed="0.28">
+      <div class="parallax order-1 md:order-2 floaty" data-speed="0.28">
         <div class="bg-ink-800/80 backdrop-blur rounded-2xl p-6 shadow-2xl">
           <p class="font-sans text-neutral-200 mb-4">Compare and redline against your playbook.</p>
 
@@ -235,7 +225,6 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
             </div>
           </div>
 
-          <!-- Diff lines animacija -->
           <div class="mt-5 rounded-lg border border-white/10 bg-black/40 p-4">
             <div class="ui-line del ui-line-in" style="animation-delay:.1s"></div>
             <div class="ui-line add ui-line-in" style="animation-delay:.26s"></div>
@@ -252,13 +241,12 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
     <!-- 3) Drafting -->
     <div class="reveal-sect grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
       <!-- UI animacija -->
-      <div class="parallax" data-speed="0.22">
+      <div class="parallax floaty" data-speed="0.22">
         <div class="bg-ink-800/80 backdrop-blur rounded-2xl p-6 shadow-2xl">
           <p class="font-sans text-neutral-200 mb-4">Draft a motion from precedents and facts.</p>
 
           <div class="bg-white rounded-lg p-4 text-black">
             <div class="text-xs uppercase tracking-wide text-neutral-500 mb-1">Editor</div>
-            <!-- simulacija pisanja in pojavljanja blokov -->
             <div class="ui-draft ui-draft-in font-serif text-[15px]">
               <span>In the matter before the Court,</span>
               <span> the Defendant moves to dismiss for lack of personal jurisdiction.</span>
@@ -266,7 +254,6 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
               <span> International Shoe and its progeny.</span>
               <span> Therefore, dismissal is warranted.</span>
             </div>
-            <!-- podpis + kazalec -->
             <div class="mt-4 font-sans text-sm text-neutral-700 ui-cursor">/s/ Jane Counsel</div>
           </div>
 
@@ -282,7 +269,7 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
         <p class="font-sans text-neutral-300 mb-4">
           Uporabite predhodne primere, stile hiše in podatke iz zadev za prvovrsten osnutek.
         </p>
-        <a href="#editor" class="font-sans ai-anim inline-flex items-center gap-2">Open Editor →</a>
+        <a href="#contact" class="font-sans ai-anim inline-flex items-center gap-2">Open Editor →</a>
       </div>
     </div>
 
@@ -290,19 +277,19 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
 </section>
 <!-- ================= /SHOWCASE ================= -->
 
-<!-- VIDEO BLOCK -->
-<section id="demo" class="bg-white">
-  <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+<!-- VIDEO (dark) -->
+<section id="demo" class="bg-black text-white">
+  <div class="mx-auto max-w-6xl px-6 py-20">
     <div class="mx-auto max-w-3xl text-center">
       <h2 class="font-serif text-3xl md:text-4xl">Demo posnetek</h2>
-      <p class="mt-3 text-neutral-600">Kratek ogled Lexore v realnem poteku dela.</p>
+      <p class="mt-3 text-neutral-300">Kratek ogled Lexore v realnem poteku dela.</p>
     </div>
 
-    <div class="mt-10 rounded-2xl border border-neutral-200 bg-white shadow-[0_10px_40px_rgba(0,0,0,0.06)] overflow-hidden relative">
-      <div class="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_60%_at_50%_30%,black,transparent)] bg-[radial-gradient(50%_50%_at_50%_0%,#f5f5f5,transparent)]"></div>
+    <div class="mt-10 rounded-2xl border border-white/10 bg-ink-900 shadow-[0_10px_40px_rgba(0,0,0,0.45)] overflow-hidden relative">
+      <div class="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_60%_at_50%_30%,black,transparent)] bg-[radial-gradient(50%_50%_at_50%_0%,#ffffff0f,transparent)]"></div>
 
       <div class="relative">
-        <div class="aspect-video bg-neutral-100">
+        <div class="aspect-video bg-neutral-900">
           <video class="w-full h-full object-cover" controls playsinline poster="assets/poster.jpg">
             <source src="assets/lexora-demo.mp4" type="video/mp4"/>
             <source src="assets/lexora-demo.webm" type="video/webm"/>
@@ -311,10 +298,10 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
           </video>
         </div>
 
-        <div class="flex items-center justify-between gap-4 border-t border-neutral-200 bg-white/70 backdrop-blur px-4 py-3">
+        <div class="flex items-center justify-between gap-4 border-t border-white/10 bg-black/60 backdrop-blur px-4 py-3">
           <div class="text-sm">
             <p class="font-medium">Lexora — kratek pregled</p>
-            <p class="text-neutral-600">1:30 min • raziskave • osnutki • revizija</p>
+            <p class="text-neutral-300">1:30 min • raziskave • osnutki • revizija</p>
           </div>
           <a href="#contact" class="btn-demo">Request a Demo</a>
         </div>
@@ -323,41 +310,44 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
   </div>
 </section>
 
-<!-- POVPRAŠEVANJE -->
-<section id="contact" class="bg-white text-black py-16 font-sans">
+<!-- POVPRAŠEVANJE (dark) -->
+<section id="contact" class="bg-black text-white py-20 font-sans">
   <div class="mx-auto max-w-2xl px-6">
-    <h2 class="text-3xl font-bold text-center mb-6">Pošljite povpraševanje</h2>
-    <p class="text-neutral-600 text-center mb-10">
+    <h2 class="font-serif text-3xl md:text-4xl text-center mb-6">Pošljite povpraševanje</h2>
+    <p class="text-neutral-300 text-center mb-10">
       Izpolnite spodnji obrazec in kontaktirali vas bomo v najkrajšem možnem času.
     </p>
 
     <form action="mailto:tvoj.email@domena.com" method="POST" enctype="text/plain" class="space-y-6">
       <div>
-        <label for="name" class="block text-sm font-medium text-neutral-700">Ime in priimek</label>
+        <label for="name" class="block text-sm font-medium text-neutral-300">Ime in priimek</label>
         <input type="text" id="name" name="name" required
-               class="mt-1 block w-full rounded-md bg-white border border-neutral-300 text-black p-3 focus:outline-none focus:ring-2 focus:ring-pink-500">
+               class="mt-1 block w-full rounded-md bg-neutral-900 border border-neutral-700 text-white placeholder-neutral-500 p-3 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition">
       </div>
 
       <div>
-        <label for="email" class="block text-sm font-medium text-neutral-700">E‑pošta</label>
+        <label for="email" class="block text-sm font-medium text-neutral-300">E‑pošta</label>
         <input type="email" id="email" name="email" required
-               class="mt-1 block w-full rounded-md bg-white border border-neutral-300 text-black p-3 focus:outline-none focus:ring-2 focus:ring-pink-500">
+               class="mt-1 block w-full rounded-md bg-neutral-900 border border-neutral-700 text-white placeholder-neutral-500 p-3 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition">
       </div>
 
       <div>
-        <label for="phone" class="block text-sm font-medium text-neutral-700">Telefonska številka</label>
+        <label for="phone" class="block text-sm font-medium text-neutral-300">Telefonska številka</label>
         <input type="tel" id="phone" name="phone"
-               class="mt-1 block w-full rounded-md bg-white border border-neutral-300 text-black p-3 focus:outline-none focus:ring-2 focus:ring-pink-500">
+               class="mt-1 block w-full rounded-md bg-neutral-900 border border-neutral-700 text-white placeholder-neutral-500 p-3 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition">
       </div>
 
       <div>
-        <label for="message" class="block text-sm font-medium text-neutral-700">Sporočilo</label>
+        <label for="message" class="block text-sm font-medium text-neutral-300">Sporočilo</label>
         <textarea id="message" name="message" rows="4" required
-                  class="mt-1 block w-full rounded-md bg-white border border-neutral-300 text-black p-3 focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+                  class="mt-1 block w-full rounded-md bg-neutral-900 border border-neutral-700 text-white placeholder-neutral-500 p-3 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition"></textarea>
       </div>
 
       <div class="text-center">
         <button type="submit" class="btn-demo">Pošlji povpraševanje</button>
+        <p class="mt-4 text-sm text-neutral-400">
+          Ali raje govorite? <a href="tel:+38600000000" class="ai-anim">Pokličite nas →</a>
+        </p>
       </div>
     </form>
   </div>
@@ -369,12 +359,9 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
     <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
       <p class="font-serif text-xl text-white">Lexora</p>
       <nav class="flex flex-wrap gap-x-6 gap-y-3 text-sm">
-        <a class="hover:text-white" href="#platform">Platform</a>
-        <a class="hover:text-white" href="#security">Varnost</a>
-        <a class="hover:text-white" href="#customers">Stranke</a>
-        <a class="hover:text-white" href="#company">Podjetje</a>
-        <a class="hover:text-white" href="#privacy">Zasebnost</a>
-        <a class="hover:text-white" href="#terms">Pogoji</a>
+        <a class="hover:text-white" href="#showcase">Funkcije</a>
+        <a class="hover:text-white" href="#demo">Video</a>
+        <a class="hover:text-white" href="#contact">Povpraševanje</a>
       </nav>
     </div>
   </div>
@@ -393,7 +380,7 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
     const vh = window.innerHeight;
     parallaxEls.forEach(el => {
       const rect = el.getBoundingClientRect();
-      const center = rect.top + rect.height/2 - vh/2; // pos relativno do središča ekrana
+      const center = rect.top + rect.height/2 - vh/2; // relativno do središča ekrana
       const speed = parseFloat(el.dataset.speed || 0.2);
       el.style.setProperty('--y', Math.max(-60, Math.min(60, center * speed)));
     });
@@ -407,10 +394,9 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
     entries.forEach(e=>{
       if(e.isIntersecting){
         e.target.classList.add('revealed');
-        // enable any paused effects (we're using running by default)
-        // re-trigger keyframes that depend on class
         const draft = e.target.querySelector('.ui-draft');
         if(draft){ draft.classList.add('ui-draft-in'); }
+        revObs.unobserve(e.target);
       }
     });
   }, { threshold: 0.25 });
@@ -419,6 +405,3 @@ Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
 
 </body>
 </html>
-```
-
-Če želiš, lahko te “UI animacije” nadomestim z **pravimi posnetki zaslona** (MP4/WebM) in jih enako parallax‑premikam; samo priskrbi videe ali GIFe (ali reči, naj pripravim placeholder <video> bloke).
