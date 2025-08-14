@@ -21,8 +21,45 @@
         }
       }
     }
-  </script>
 
+  
+:root{
+  /* če že imaš brand barvo, jo uporabi tukaj */
+  --brand-blue: #60a5fa; /* tailwind sky-400 */
+  /* nastavi enotno display pisavo (enako kot glavni naslov) */
+  --display-font: var(--hero-display-font, 'YourDisplayFont', ui-sans-serif, system-ui);
+  --sans-font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial, "Apple Color Emoji","Segoe UI Emoji";
+}
+
+/* glow za modra besedila/cta linke */
+.text-glow {
+  color: var(--brand-blue);
+  text-shadow:
+    0 0 6px rgba(96,165,250,.9),
+    0 0 14px rgba(96,165,250,.6),
+    0 0 28px rgba(96,165,250,.35);
+}
+.text-glow:hover {
+  text-shadow:
+    0 0 8px rgba(96,165,250,1),
+    0 0 18px rgba(96,165,250,.75),
+    0 0 36px rgba(96,165,250,.45);
+  filter: brightness(1.05);
+}
+
+/* tipografija v tej sekciji */
+#lexora-showcase h2,
+#lexora-showcase .title {
+  font-family: var(--display-font);
+  letter-spacing: -0.02em;
+}
+#lexora-showcase,
+#lexora-showcase p,
+#lexora-showcase a,
+#lexora-showcase button,
+#lexora-showcase .body {
+  font-family: var(--sans-font);
+}
   <style>
     /* Gradient gumb */
     .btn-demo{
@@ -166,31 +203,34 @@
 </section>
 
 <!-- NOVA ANIMIRANA SEKCIJA -->
-<section class="bg-ink-950 text-white py-16">
+<section id="lexora-showcase" class="bg-zinc-900 text-white py-16">
   <div class="max-w-6xl mx-auto grid grid-cols-1 md:grid-cols-2 gap-12 items-center px-6">
-    
-    <!-- Leva stran: primer uporabe -->
-    <div data-aos="fade-right" class="bg-ink-800 p-6 rounded-xl shadow-lg">
-      <p class="mb-4">Summarize the operating covenants for your client's agreement.</p>
+    <!-- Leva karta -->
+    <div data-aos="fade-right" class="bg-zinc-800/70 backdrop-blur p-6 rounded-2xl shadow-lg">
+      <p class="mb-4 body">Summarize the operating covenants for your client's agreement.</p>
       <div class="bg-white text-black rounded-lg p-4 mb-4">
         <div class="border p-3 rounded-lg flex items-center gap-3">
           📄 Merger Agreement.docx
         </div>
       </div>
-      <button class="bg-black text-white px-6 py-2 rounded-lg">Ask Lexora</button>
+      <button class="bg-black text-white px-6 py-2 rounded-xl body">Ask Lexora</button>
     </div>
 
-    <!-- Desna stran: opis -->
+    <!-- Desna stran -->
     <div data-aos="fade-left">
-      <h2 class="text-3xl font-bold mb-4">Assistant<br>Tailored to Your Expertise</h2>
-      <p class="text-gray-300 mb-4">
-        Delegate complex legal tasks in natural language to your AI-powered legal assistant.
+      <h2 class="title text-4xl md:text-5xl font-bold mb-4">
+        Assistant<br/>Tailored to Your Expertise
+      </h2>
+      <p class="text-zinc-300/90 mb-4 body">
+        Delegate complex legal tasks in natural language to your AI‑powered legal assistant.
       </p>
-      <a href="#assistant" class="text-blue-400 hover:underline">Explore Assistant →</a>
+      <a href="#assistant" class="text-glow font-medium body inline-flex items-center gap-2">
+        Explore Assistant →
+      </a>
     </div>
-
   </div>
 </section>
+
 
 <!-- VIDEO BLOCK -->
 <section id="demo" class="bg-white">
