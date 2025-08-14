@@ -21,170 +21,97 @@
         }
       }
     }
-   </script>
+  </script>
 
-<style>
-  .btn-demo {
-  background: linear-gradient(135deg, #ec4899, #f97316, #8b5cf6);
-  background-size: 300% 300%;
-  font-family: 'Inter', system-ui, Arial, sans-serif; /* kot zgornji meni */
-  animation: btnFlow 6s ease infinite;
-  color: #fff;
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
-  font-weight: 600;
-  font-size: 1rem; 
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  border: none;
-  box-shadow: none;
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
-}
+  <style>
+    /* Gradient gumb */
+    .btn-demo{
+      background: linear-gradient(135deg, #ec4899, #f97316, #8b5cf6);
+      background-size: 300% 300%;
+      animation: btnFlow 6s ease infinite;
+      color:#fff;
+      padding: .9rem 1.5rem;
+      border-radius:.5rem;
+      font-weight:600;
+      font-size:1rem;
+      display:inline-flex; align-items:center; justify-content:center;
+      border:none; box-shadow:none;
+      transition: transform .25s ease, box-shadow .25s ease;
+    }
+    .btn-demo:hover{ transform: scale(1.05); box-shadow:0 0 15px rgba(255,255,255,.8); }
+    @keyframes btnFlow{ 0%{background-position:0% 0%} 50%{background-position:100% 100%} 100%{background-position:0% 0%} }
 
-.btn-demo:hover {
-  transform: scale(1.05);
-  box-shadow: 0 0 15px rgba(255, 255, 255, 0.8);
-}
+    /* Animacija za besedo AI */
+    .ai-anim{
+      background: linear-gradient(135deg, #ec4899, #f97316, #8b5cf6);
+      background-size: 300% 300%;
+      background-position: 0% 0%;
+      -webkit-background-clip:text; background-clip:text;
+      color:transparent; display:inline-block;
+      animation: aiFlow 6s ease infinite;
+    }
+    @keyframes aiFlow{ 0%{background-position:0% 0%} 50%{background-position:100% 100%} 100%{background-position:0% 0%} }
 
-@keyframes btnFlow {
-  0%   { background-position: 0% 0%; }
-  50%  { background-position: 100% 100%; }
-  100% { background-position: 0% 0%; }
-}
-
-  /* Animirani gradient za besedo AI */
-  .ai-anim{
-    /* isti barvni set kot gumb */
-    background: linear-gradient(135deg, #ec4899, #f97316, #8b5cf6);
-    background-size: 300% 300%;
-    background-position: 0% 0%;
-    -webkit-background-clip: text;
-            background-clip: text;
-    color: transparent;            /* pokaži samo gradient */
-    display: inline-block;         /* da animacija lepo teče */
-    animation: aiFlow 6s ease infinite;
-  }
-
-  @keyframes aiFlow{
-    0%   { background-position:   0%   0%; }
-    50%  { background-position: 100% 100%; }
-    100% { background-position:   0%   0%; }
-  }
-
-  /* Spoštuj zmanjšano gibanje, če uporabnik to želi */
-  @media (prefers-reduced-motion: reduce){
-    .ai-anim{ animation: none; }
-  }
-</style>
-
+    @media (prefers-reduced-motion: reduce){
+      .ai-anim, .btn-demo{ animation:none; }
+    }
+  </style>
 </head>
 
 <body class="bg-black text-white antialiased">
-    
 
-  <!-- NAV -->
-<!-- HEADER — Harvey-style -->
-<header class="fixed top-0 inset-x-0 z-50 text-white
-  bg-gradient-to-b from-neutral-700/70 via-neutral-900/95 to-neutral-900">
-
+<!-- HEADER -->
+<header class="fixed top-0 inset-x-0 z-50 text-white bg-gradient-to-b from-neutral-700/70 via-neutral-900/95 to-neutral-900">
   <div class="mx-auto max-w-7xl px-4 lg:px-6 h-16 flex items-center justify-between">
-
-    <!-- Left: Logo -->
     <a class="font-serif text-2xl tracking-tight" href="#">Lexora</a>
 
-    <!-- Center: Nav (desktop) -->
     <nav class="hidden md:flex items-center gap-8 text-sm text-neutral-300">
-      <!-- Dropdown: Platform -->
       <div class="relative group">
         <button class="inline-flex items-center gap-1 hover:text-white">
           Platform
-          <svg width="14" height="14" viewBox="0 0 24 24" class="opacity-80">
-            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          </svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" class="opacity-80"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
         </button>
-        <!-- Panel -->
-        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100
-                    transition duration-200
-                    absolute left-1/2 -translate-x-1/2 mt-3 w-[560px]
-                    rounded-lg border border-white/10 bg-black/90 backdrop-blur p-4">
+        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition duration-200 absolute left-1/2 -translate-x-1/2 mt-3 w-[560px] rounded-lg border border-white/10 bg-black/90 backdrop-blur p-4">
           <div class="grid grid-cols-2 gap-3 text-neutral-200">
-            <a href="#product" class="rounded-md p-3 hover:bg-white/5">
-              <p class="font-medium text-white">Asistent</p>
-              <p class="text-xs text-neutral-400 mt-1">Raziskave z navedbami virov.</p>
-            </a>
-            <a href="#product" class="rounded-md p-3 hover:bg-white/5">
-              <p class="font-medium text-white">Delovni tokovi</p>
-              <p class="text-xs text-neutral-400 mt-1">Playbooki in avtomatizacije.</p>
-            </a>
-            <a href="#security" class="rounded-md p-3 hover:bg-white/5">
-              <p class="font-medium text-white">Varnost & upravljanje</p>
-              <p class="text-xs text-neutral-400 mt-1">SSO, revizije, rezidenti.</p>
-            </a>
-            <a href="#integrations" class="rounded-md p-3 hover:bg-white/5">
-              <p class="font-medium text-white">Integracije</p>
-              <p class="text-xs text-neutral-400 mt-1">DMS, SharePoint, Slack …</p>
-            </a>
+            <a href="#product" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Asistent</p><p class="text-xs text-neutral-400 mt-1">Raziskave z navedbami virov.</p></a>
+            <a href="#product" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Delovni tokovi</p><p class="text-xs text-neutral-400 mt-1">Playbooki in avtomatizacije.</p></a>
+            <a href="#security" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Varnost & upravljanje</p><p class="text-xs text-neutral-400 mt-1">SSO, revizije, rezidenti.</p></a>
+            <a href="#integrations" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Integracije</p><p class="text-xs text-neutral-400 mt-1">DMS, SharePoint, Slack …</p></a>
           </div>
         </div>
       </div>
 
-      <!-- Dropdown: Rešitve -->
       <div class="relative group">
         <button class="inline-flex items-center gap-1 hover:text-white">
           Rešitve
-          <svg width="14" height="14" viewBox="0 0 24 24" class="opacity-80">
-            <path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/>
-          </svg>
+          <svg width="14" height="14" viewBox="0 0 24 24" class="opacity-80"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
         </button>
-        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100
-                    transition duration-200
-                    absolute left-1/2 -translate-x-1/2 mt-3 w-[560px]
-                    rounded-lg border border-white/10 bg-black/90 backdrop-blur p-4">
+        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition duration-200 absolute left-1/2 -translate-x-1/2 mt-3 w-[560px] rounded-lg border border-white/10 bg-black/90 backdrop-blur p-4">
           <div class="grid grid-cols-2 gap-3 text-neutral-200">
-            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5">
-              <p class="font-medium text-white">Pogodbe & M&A</p>
-              <p class="text-xs text-neutral-400 mt-1">DD, klavzule, primerjave.</p>
-            </a>
-            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5">
-              <p class="font-medium text-white">Sodni spisi</p>
-              <p class="text-xs text-neutral-400 mt-1">Osnutki in raziskave.</p>
-            </a>
-            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5">
-              <p class="font-medium text-white">Regulatorno</p>
-              <p class="text-xs text-neutral-400 mt-1">Politike in kontrole.</p>
-            </a>
-            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5">
-              <p class="font-medium text-white">In‑house pravniki</p>
-              <p class="text-xs text-neutral-400 mt-1">Matter‑templati, intake.</p>
-            </a>
+            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Pogodbe & M&A</p><p class="text-xs text-neutral-400 mt-1">DD, klavzule, primerjave.</p></a>
+            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Sodni spisi</p><p class="text-xs text-neutral-400 mt-1">Osnutki in raziskave.</p></a>
+            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Regulatorno</p><p class="text-xs text-neutral-400 mt-1">Politike in kontrole.</p></a>
+            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">In‑house pravniki</p><p class="text-xs text-neutral-400 mt-1">Matter‑templati, intake.</p></a>
           </div>
         </div>
       </div>
 
-      <!-- Nav items (brez dropdowna) -->
       <a class="hover:text-white" href="#customers">Stranke</a>
       <a class="hover:text-white" href="#security">Varnost</a>
       <a class="hover:text-white" href="#news">Novice</a>
       <a class="hover:text-white" href="#company">Podjetje</a>
     </nav>
 
-    <!-- Right: Login -->
     <a href="#login" class="hidden md:block text-sm text-neutral-300 hover:text-white">Prijava</a>
 
-    <!-- Mobile hamburger -->
     <button id="mbtn" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded hover:bg-white/5" aria-label="Menu">
-      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white">
-        <path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/>
-      </svg>
+      <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </button>
   </div>
 
-  <!-- Mobile sheet -->
   <div id="mpanel" class="hidden border-t border-white/10 bg-black/90 backdrop-blur">
     <nav class="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-4 text-base text-neutral-200">
-      <details>
-        <summary class="cursor-pointer py-2">Platform</summary>
+      <details><summary class="cursor-pointer py-2">Platform</summary>
         <div class="pl-3 space-y-2 text-neutral-300">
           <a href="#product" class="block">Asistent</a>
           <a href="#product" class="block">Delovni tokovi</a>
@@ -192,8 +119,7 @@
           <a href="#integrations" class="block">Integracije</a>
         </div>
       </details>
-      <details>
-        <summary class="cursor-pointer py-2">Rešitve</summary>
+      <details><summary class="cursor-pointer py-2">Rešitve</summary>
         <div class="pl-3 space-y-2 text-neutral-300">
           <a href="#solutions" class="block">Pogodbe & M&A</a>
           <a href="#solutions" class="block">Sodni spisi</a>
@@ -209,138 +135,117 @@
     </nav>
   </div>
 </header>
-<!-- Spacer (višina headerja) -->
+
+<!-- Spacer pod fixed headerjem -->
 <div class="h-16"></div>
 
-<!-- HERO: zajame cel zaslon (tudi na iOS), brez belega roba spodaj -->
+<!-- HERO -->
 <section class="bg-black text-white">
-  <div class="mx-auto max-w-6xl px-6 min-h-[calc(100svh-56px)]
-              flex flex-col items-center justify-center text-center">
+  <div class="mx-auto max-w-6xl px-6 min-h-[calc(100svh-56px)] flex flex-col items-center justify-center text-center">
     <h1 class="display font-serif text-4xl sm:text-5xl md:text-7xl leading-tight">
-      
-      Revolucioniraj svojo pravno prakso z <span class="ai-anim">  AI </span>.
-
+      Revolucioniraj svojo pravno prakso z <span class="ai-anim">AI</span>.
+    </h1>
     <p class="display font-sans mt-4 sm:mt-6 text-base sm:text-lg text-neutral-300 max-w-2xl mx-auto">
       Odklenite nov nivo produktivnosti. Osredotočite se na primere, ne na papirje.
     </p>
-    
-    <a href="#demo" class="btn-demo mt-8 sm:mt-10"> Preizkusi DEMO </a>
-    
+    <a href="#demo" class="btn-demo mt-8 sm:mt-10">Preizkusi DEMO</a>
   </div>
 </section>
 
-    
+<!-- VIDEO BLOCK -->
+<section id="demo" class="bg-white">
+  <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
+    <div class="mx-auto max-w-3xl text-center">
+      <h2 class="font-serif text-3xl md:text-4xl">Demo posnetek</h2>
+      <p class="mt-3 text-neutral-600">Kratek ogled Lexore v realnem poteku dela.</p>
+    </div>
 
-  <!-- VIDEO BLOCK -->
-  <section class="bg-white">
-    <div class="mx-auto max-w-6xl px-6 py-16 md:py-20">
-      <div class="mx-auto max-w-3xl text-center">
-        <h2 class="font-serif text-3xl md:text-4xl">Demo posnetek</h2>
-        <p class="mt-3 text-neutral-600">Kratek ogled Lexore v realnem poteku dela.</p>
-      </div>
+    <div class="mt-10 rounded-2xl border border-neutral-200 bg-white shadow-[0_10px_40px_rgba(0,0,0,0.06)] overflow-hidden relative">
+      <div class="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_60%_at_50%_30%,black,transparent)] bg-[radial-gradient(50%_50%_at_50%_0%,#f5f5f5,transparent)]"></div>
 
-      <div class="mt-10 rounded-2xl border border-neutral-200 bg-white shadow-[0_10px_40px_rgba(0,0,0,0.06)] overflow-hidden relative">
-        <div class="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_60%_at_50%_30%,black,transparent)] bg-[radial-gradient(50%_50%_at_50%_0%,#f5f5f5,transparent)]"></div>
+      <div class="relative">
+        <div class="aspect-video bg-neutral-100">
+          <video class="w-full h-full object-cover" controls playsinline poster="assets/poster.jpg">
+            <source src="assets/lexora-demo.mp4" type="video/mp4"/>
+            <source src="assets/lexora-demo.webm" type="video/webm"/>
+            <source src="assets/lexora-demo.mov" type="video/quicktime"/>
+            Vaš brskalnik ne podpira video oznake.
+          </video>
+        </div>
 
-        <div class="relative">
-          <div class="aspect-video bg-neutral-100">
-            <video class="w-full h-full object-cover" controls playsinline poster="assets/poster.jpg">
-              <source src="assets/lexora-demo.mp4" type="video/mp4"/>
-              <source src="assets/lexora-demo.webm" type="video/webm"/>
-              <source src="assets/lexora-demo.mov" type="video/quicktime"/>
-              Vaš brskalnik ne podpira video oznake.
-            </video>
+        <div class="flex items-center justify-between gap-4 border-t border-neutral-200 bg-white/70 backdrop-blur px-4 py-3">
+          <div class="text-sm">
+            <p class="font-medium">Lexora — kratek pregled</p>
+            <p class="text-neutral-600">1:30 min • raziskave • osnutki • revizija</p>
           </div>
-
-          <div class="flex items-center justify-between gap-4 border-t border-neutral-200 bg-white/70 backdrop-blur px-4 py-3">
-            <div class="text-sm">
-              <p class="font-medium">Lexora — kratek pregled</p>
-              <p class="text-neutral-600">1:30 min • raziskave • osnutki • revizija</p>
-            </div>
-            <a a href="#demo" class="btn-demo mt-8 sm:mt-10>
-              Request a Demo
-            </a>
-          </div>
+          <a href="#contact" class="btn-demo">Request a Demo</a>
         </div>
       </div>
     </div>
   </div>
+</section>
 
-  </section>
-
-              
-
-
-              <!-- POVPRAŠEVANJE -->
-<section class="bg-black text-white py-16 font-sans">
+<!-- POVPRAŠEVANJE (LOČENO, BELO OZADJE) -->
+<section id="contact" class="bg-white text-black py-16 font-sans">
   <div class="mx-auto max-w-2xl px-6">
     <h2 class="text-3xl font-bold text-center mb-6">Pošljite povpraševanje</h2>
-    <p class="text-neutral-400 text-center mb-10">
+    <p class="text-neutral-600 text-center mb-10">
       Izpolnite spodnji obrazec in kontaktirali vas bomo v najkrajšem možnem času.
     </p>
 
     <form action="mailto:tvoj.email@domena.com" method="POST" enctype="text/plain" class="space-y-6">
-      <!-- Ime -->
       <div>
-        <label for="name" class="block text-sm font-medium text-neutral-300">Ime in priimek</label>
+        <label for="name" class="block text-sm font-medium text-neutral-700">Ime in priimek</label>
         <input type="text" id="name" name="name" required
-          class="mt-1 block w-full rounded-md bg-black border border-white text-white p-3 focus:outline-none focus:ring-2 focus:ring-pink-500">
+               class="mt-1 block w-full rounded-md bg-white border border-neutral-300 text-black p-3 focus:outline-none focus:ring-2 focus:ring-pink-500">
       </div>
 
-      <!-- Email -->
       <div>
-        <label for="email" class="block text-sm font-medium text-neutral-300">E-pošta</label>
+        <label for="email" class="block text-sm font-medium text-neutral-700">E‑pošta</label>
         <input type="email" id="email" name="email" required
-          class="mt-1 block w-full rounded-md bg-black border border-white text-white p-3 focus:outline-none focus:ring-2 focus:ring-pink-500">
+               class="mt-1 block w-full rounded-md bg-white border border-neutral-300 text-black p-3 focus:outline-none focus:ring-2 focus:ring-pink-500">
       </div>
 
-      <!-- Telefon -->
       <div>
-        <label for="phone" class="block text-sm font-medium text-neutral-300">Telefonska številka</label>
+        <label for="phone" class="block text-sm font-medium text-neutral-700">Telefonska številka</label>
         <input type="tel" id="phone" name="phone"
-          class="mt-1 block w-full rounded-md bg-black border border-white text-white p-3 focus:outline-none focus:ring-2 focus:ring-pink-500">
+               class="mt-1 block w-full rounded-md bg-white border border-neutral-300 text-black p-3 focus:outline-none focus:ring-2 focus:ring-pink-500">
       </div>
 
-      <!-- Sporočilo -->
       <div>
-        <label for="message" class="block text-sm font-medium text-neutral-300">Sporočilo</label>
+        <label for="message" class="block text-sm font-medium text-neutral-700">Sporočilo</label>
         <textarea id="message" name="message" rows="4" required
-          class="mt-1 block w-full rounded-md bg-black border border-white text-white p-3 focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
+                  class="mt-1 block w-full rounded-md bg-white border border-neutral-300 text-black p-3 focus:outline-none focus:ring-2 focus:ring-pink-500"></textarea>
       </div>
 
-      <!-- Gumb -->
       <div class="text-center">
-        <button type="submit" class="btn-animated">
-          Pošlji povpraševanje
-        </button>
+        <button type="submit" class="btn-demo">Pošlji povpraševanje</button>
       </div>
     </form>
   </div>
 </section>
 
-
-  <!-- FOOTER -->
-  <footer class="bg-ink-950 text-neutral-300">
-    <div class="mx-auto max-w-6xl px-6 py-10">
-      <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
-        <p class="font-serif text-xl text-white">Lexora</p>
-        <nav class="flex flex-wrap gap-x-6 gap-y-3 text-sm">
-          <a class="hover:text-white" href="#platform">Platform</a>
-          <a class="hover:text-white" href="#security">Varnost</a>
-          <a class="hover:text-white" href="#customers">Stranke</a>
-          <a class="hover:text-white" href="#company">Podjetje</a>
-          <a class="hover:text-white" href="#privacy">Zasebnost</a>
-          <a class="hover:text-white" href="#terms">Pogoji</a>
-        </nav>
-      </div>
+<!-- FOOTER -->
+<footer class="bg-ink-950 text-neutral-300">
+  <div class="mx-auto max-w-6xl px-6 py-10">
+    <div class="flex flex-col md:flex-row md:items-center md:justify-between gap-6">
+      <p class="font-serif text-xl text-white">Lexora</p>
+      <nav class="flex flex-wrap gap-x-6 gap-y-3 text-sm">
+        <a class="hover:text-white" href="#platform">Platform</a>
+        <a class="hover:text-white" href="#security">Varnost</a>
+        <a class="hover:text-white" href="#customers">Stranke</a>
+        <a class="hover:text-white" href="#company">Podjetje</a>
+        <a class="hover:text-white" href="#privacy">Zasebnost</a>
+        <a class="hover:text-white" href="#terms">Pogoji</a>
+      </nav>
     </div>
-  </footer>
+  </div>
+</footer>
 
- <script>
+<script>
   const btn = document.getElementById('mbtn');
   const panel = document.getElementById('mpanel');
   if (btn && panel) btn.addEventListener('click', () => panel.classList.toggle('hidden'));
-  const y = document.getElementById('y'); if (y) y.textContent = new Date().getFullYear();
 </script>
 
 </body>
