@@ -1,3 +1,14 @@
+Tu je **celotna posodobljena stran**.
+Dodani so 3 bloki pod hero-jem (pred videom), ki:
+
+* se **interaktivno premikajo** med scrollom (parallax + depth),
+* imajo **“žive” UI animacije**, ki simulirajo uporabo Lexore (analiza povzetka, redline, generiranje osnutka),
+* naslovi so **serif**, ostalo **sans**,
+* CTA‑ji in modre besede uporabljajo **isti gradient flow** kot “AI” v heroju.
+
+Kodo lahko prilepiš 1:1 (ni zunanjih knjižnic).
+
+```html
 <!doctype html>
 <html lang="sl">
 <head>
@@ -24,13 +35,13 @@
   </script>
 
   <style>
-    /* Gradient gumb */
+    /* ===== Gradient gumb ===== */
     .btn-demo{
       background: linear-gradient(135deg, #ec4899, #f97316, #8b5cf6);
       background-size: 300% 300%;
       animation: btnFlow 6s ease infinite;
       color:#fff;
-      padding: .9rem 1.5rem;
+      padding:.9rem 1.5rem;
       border-radius:.5rem;
       font-weight:600;
       font-size:1rem;
@@ -41,7 +52,7 @@
     .btn-demo:hover{ transform: scale(1.05); box-shadow:0 0 15px rgba(255,255,255,.8); }
     @keyframes btnFlow{ 0%{background-position:0% 0%} 50%{background-position:100% 100%} 100%{background-position:0% 0%} }
 
-    /* Animacija za besedo AI */
+    /* ===== Gradient flow za AI in CTA-je ===== */
     .ai-anim{
       background: linear-gradient(135deg, #ec4899, #f97316, #8b5cf6);
       background-size: 300% 300%;
@@ -49,24 +60,70 @@
       -webkit-background-clip:text; background-clip:text;
       color:transparent; display:inline-block;
       animation: aiFlow 6s ease infinite;
+      font-weight:500;
     }
     @keyframes aiFlow{ 0%{background-position:0% 0%} 50%{background-position:100% 100%} 100%{background-position:0% 0%} }
 
+    /* ===== Scroll interaktivnost (parallax + reveal) ===== */
+    .parallax{
+      transform: translateY(calc(var(--y,0) * 1px)) translateZ(0);
+      transition: transform .08s linear;
+      will-change: transform;
+    }
+    .reveal-sect{ opacity:0; transform: translateY(28px); transition: opacity .6s ease, transform .6s ease; }
+    .revealed{ opacity:1; transform:none; }
+
     @media (prefers-reduced-motion: reduce){
       .ai-anim, .btn-demo{ animation:none; }
+      .parallax{ transform:none !important; }
+      .reveal-sect{ opacity:1; transform:none; }
+      .ui-typing, .ui-progress, .ui-pulse, .ui-cursor, .ui-line-in, .ui-draft-in{ animation:none !important; }
     }
+
+    /* ====== UI ANIMACIJE — simulacija uporabe ====== */
+    /* skeleton pulsing */
+    .ui-pulse{ background: linear-gradient(90deg, rgba(255,255,255,.06), rgba(255,255,255,.12), rgba(255,255,255,.06));
+      background-size: 200% 100%; animation: pulse 1.6s ease-in-out infinite; }
+    @keyframes pulse{ 0%{background-position:200% 0} 100%{background-position:-200% 0} }
+
+    /* blinking cursor */
+    .ui-cursor{ position:relative; }
+    .ui-cursor::after{
+      content:""; position:absolute; top:0; bottom:0; width:2px; right:-2px; background:#111;
+      animation: blink .9s steps(1) infinite;
+    }
+    @keyframes blink{ 0%,49%{opacity:1} 50%,100%{opacity:0} }
+
+    /* typing simulation (width reveal) */
+    .ui-typing{ white-space:nowrap; overflow:hidden; border-right:2px solid transparent;
+      animation: typing 3.5s steps(28,end) infinite alternate; }
+    @keyframes typing{ 0%{width:0ch} 100%{width:28ch} }
+
+    /* progress bar */
+    .ui-progress{ position:relative; height:8px; border-radius:999px; overflow:hidden; background:rgba(255,255,255,.1); }
+    .ui-progress::before{
+      content:""; position:absolute; inset:0; background:linear-gradient(90deg,#ec4899,#f97316,#8b5cf6);
+      transform-origin:left; transform:scaleX(0); animation: prog 5s ease-in-out infinite;
+    }
+    @keyframes prog{ 0%{transform:scaleX(0)} 40%{transform:scaleX(0.7)} 60%{transform:scaleX(0.5)} 100%{transform:scaleX(1)} }
+
+    /* redline lines in/out */
+    .ui-line{ height:14px; border-radius:4px; margin:6px 0; opacity:.95; transform: translateX(-8px); }
+    .ui-line.add{ background:rgba(34,197,94,.3); border:1px solid rgba(34,197,94,.6); }
+    .ui-line.del{ background:rgba(239,68,68,.25); border:1px solid rgba(239,68,68,.6); }
+    .ui-line-in{ animation: lineIn .8s ease forwards; }
+    @keyframes lineIn{ from{opacity:0; transform:translateX(-16px)} to{opacity:1; transform:none} }
+
+    /* drafting text appearing in blocks */
+    .ui-draft{ line-height:1.55; }
+    .ui-draft span{ opacity:0; display:inline-block; }
+    .ui-draft-in span{ animation: draftIn .7s ease forwards; }
+    .ui-draft-in span:nth-child(2){ animation-delay:.15s }
+    .ui-draft-in span:nth-child(3){ animation-delay:.3s }
+    .ui-draft-in span:nth-child(4){ animation-delay:.45s }
+    .ui-draft-in span:nth-child(5){ animation-delay:.6s }
+    @keyframes draftIn{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
   </style>
- 
-  </div>
-</section>
-
-<script>
-  AOS.init({
-    duration: 800,
-    once: true
-  });
-</script>
-
 </head>
 
 <body class="bg-black text-white antialiased">
@@ -77,40 +134,10 @@
     <a class="font-serif text-2xl tracking-tight" href="#">Lexora</a>
 
     <nav class="hidden md:flex items-center gap-8 text-sm text-neutral-300">
-      <div class="relative group">
-        <button class="inline-flex items-center gap-1 hover:text-white">
-          Platform
-          <svg width="14" height="14" viewBox="0 0 24 24" class="opacity-80"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-        </button>
-        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition duration-200 absolute left-1/2 -translate-x-1/2 mt-3 w-[560px] rounded-lg border border-white/10 bg-black/90 backdrop-blur p-4">
-          <div class="grid grid-cols-2 gap-3 text-neutral-200">
-            <a href="#product" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Asistent</p><p class="text-xs text-neutral-400 mt-1">Raziskave z navedbami virov.</p></a>
-            <a href="#product" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Delovni tokovi</p><p class="text-xs text-neutral-400 mt-1">Playbooki in avtomatizacije.</p></a>
-            <a href="#security" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Varnost & upravljanje</p><p class="text-xs text-neutral-400 mt-1">SSO, revizije, rezidenti.</p></a>
-            <a href="#integrations" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Integracije</p><p class="text-xs text-neutral-400 mt-1">DMS, SharePoint, Slack …</p></a>
-          </div>
-        </div>
-      </div>
-
-      <div class="relative group">
-        <button class="inline-flex items-center gap-1 hover:text-white">
-          Rešitve
-          <svg width="14" height="14" viewBox="0 0 24 24" class="opacity-80"><path d="M6 9l6 6 6-6" stroke="currentColor" stroke-width="1.5" fill="none" stroke-linecap="round"/></svg>
-        </button>
-        <div class="invisible opacity-0 group-hover:visible group-hover:opacity-100 transition duration-200 absolute left-1/2 -translate-x-1/2 mt-3 w-[560px] rounded-lg border border-white/10 bg-black/90 backdrop-blur p-4">
-          <div class="grid grid-cols-2 gap-3 text-neutral-200">
-            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Pogodbe & M&A</p><p class="text-xs text-neutral-400 mt-1">DD, klavzule, primerjave.</p></a>
-            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Sodni spisi</p><p class="text-xs text-neutral-400 mt-1">Osnutki in raziskave.</p></a>
-            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">Regulatorno</p><p class="text-xs text-neutral-400 mt-1">Politike in kontrole.</p></a>
-            <a href="#solutions" class="rounded-md p-3 hover:bg-white/5"><p class="font-medium text-white">In‑house pravniki</p><p class="text-xs text-neutral-400 mt-1">Matter‑templati, intake.</p></a>
-          </div>
-        </div>
-      </div>
-
+      <a class="hover:text-white" href="#platform">Platform</a>
+      <a class="hover:text-white" href="#solutions">Rešitve</a>
       <a class="hover:text-white" href="#customers">Stranke</a>
       <a class="hover:text-white" href="#security">Varnost</a>
-      <a class="hover:text-white" href="#news">Novice</a>
-      <a class="hover:text-white" href="#company">Podjetje</a>
     </nav>
 
     <a href="#login" class="hidden md:block text-sm text-neutral-300 hover:text-white">Prijava</a>
@@ -118,32 +145,6 @@
     <button id="mbtn" class="md:hidden inline-flex h-10 w-10 items-center justify-center rounded hover:bg-white/5" aria-label="Menu">
       <svg width="22" height="22" viewBox="0 0 24 24" fill="none" class="text-white"><path d="M4 6h16M4 12h16M4 18h16" stroke="currentColor" stroke-width="1.5" stroke-linecap="round"/></svg>
     </button>
-  </div>
-
-  <div id="mpanel" class="hidden border-t border-white/10 bg-black/90 backdrop-blur">
-    <nav class="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-4 text-base text-neutral-200">
-      <details><summary class="cursor-pointer py-2">Platform</summary>
-        <div class="pl-3 space-y-2 text-neutral-300">
-          <a href="#product" class="block">Asistent</a>
-          <a href="#product" class="block">Delovni tokovi</a>
-          <a href="#security" class="block">Varnost & upravljanje</a>
-          <a href="#integrations" class="block">Integracije</a>
-        </div>
-      </details>
-      <details><summary class="cursor-pointer py-2">Rešitve</summary>
-        <div class="pl-3 space-y-2 text-neutral-300">
-          <a href="#solutions" class="block">Pogodbe & M&A</a>
-          <a href="#solutions" class="block">Sodni spisi</a>
-          <a href="#solutions" class="block">Regulatorno</a>
-          <a href="#solutions" class="block">In‑house pravniki</a>
-        </div>
-      </details>
-      <a href="#customers">Stranke</a>
-      <a href="#security">Varnost</a>
-      <a href="#news">Novice</a>
-      <a href="#company">Podjetje</a>
-      <a href="#login" class="pt-2 text-neutral-300">Prijava</a>
-    </nav>
   </div>
 </header>
 
@@ -162,8 +163,132 @@
     <a href="#demo" class="btn-demo mt-8 sm:mt-10">Preizkusi DEMO</a>
   </div>
 </section>
-  
 
+<!-- ================= SHOWCASE (scroll-interactive) ================= -->
+<section id="showcase" class="bg-ink-900 text-white">
+  <div class="mx-auto max-w-6xl px-6 py-24 space-y-24">
+
+    <!-- 1) Summarize -->
+    <div class="reveal-sect grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <!-- UI animacija -->
+      <div class="parallax" data-speed="0.25">
+        <div class="bg-ink-800/80 backdrop-blur rounded-2xl p-6 shadow-2xl">
+          <p class="font-sans text-neutral-200 mb-4">Summarize the operating covenants for your client's agreement.</p>
+
+          <!-- Drop area -->
+          <div class="rounded-xl border border-white/10 bg-black/40 p-4">
+            <div class="rounded-lg bg-white text-black p-4 flex items-center gap-3">
+              <span>📄</span><span class="font-medium">Merger Agreement.docx</span>
+            </div>
+            <!-- progress -->
+            <div class="ui-progress mt-4 rounded-full"></div>
+
+            <!-- summary “typing” -->
+            <div class="mt-5 bg-white rounded-lg p-4 text-black">
+              <div class="text-xs uppercase tracking-wide text-neutral-500 mb-1">Summary</div>
+              <div class="ui-typing font-sans">
+                Obligations on non‑solicit, change‑of‑control, and reporting…
+              </div>
+            </div>
+          </div>
+
+          <button class="mt-6 bg-black text-white px-6 py-2 rounded-xl font-sans">Ask Lexora</button>
+        </div>
+      </div>
+
+      <!-- Tekst -->
+      <div class="parallax" data-speed="-0.15">
+        <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-4">
+          Assistant<br/>Tailored to Your Expertise
+        </h2>
+        <p class="font-sans text-neutral-300 mb-4">
+          Delegirajte kompleksne pravne naloge v naravnem jeziku svojemu AI asistentu.
+        </p>
+        <a href="#assistant" class="font-sans ai-anim inline-flex items-center gap-2">Explore Assistant →</a>
+      </div>
+    </div>
+
+    <!-- 2) Redline -->
+    <div class="reveal-sect grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <!-- Tekst -->
+      <div class="parallax order-2 md:order-1" data-speed="-0.18">
+        <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-4">
+          Redline ključnih klavzul v sekundah
+        </h2>
+        <p class="font-sans text-neutral-300 mb-4">
+          Avtomatski predlogi popravkov in razlage tveganj z navedbo razlogov.
+        </p>
+        <a href="#workflows" class="font-sans ai-anim inline-flex items-center gap-2">See Workflows →</a>
+      </div>
+
+      <!-- UI animacija -->
+      <div class="parallax order-1 md:order-2" data-speed="0.28">
+        <div class="bg-ink-800/80 backdrop-blur rounded-2xl p-6 shadow-2xl">
+          <p class="font-sans text-neutral-200 mb-4">Compare and redline against your playbook.</p>
+
+          <div class="grid grid-cols-2 gap-3">
+            <div class="bg-white text-black rounded-lg p-3">
+              <div class="flex items-center gap-3"><span>📄</span><span class="font-medium">Supplier‑MSA_v7.pdf</span></div>
+            </div>
+            <div class="bg-white text-black rounded-lg p-3">
+              <div class="flex items-center gap-3"><span>📄</span><span class="font-medium">Lexora_Playbook.json</span></div>
+            </div>
+          </div>
+
+          <!-- Diff lines animacija -->
+          <div class="mt-5 rounded-lg border border-white/10 bg-black/40 p-4">
+            <div class="ui-line del ui-line-in" style="animation-delay:.1s"></div>
+            <div class="ui-line add ui-line-in" style="animation-delay:.26s"></div>
+            <div class="ui-line del ui-line-in" style="animation-delay:.42s"></div>
+            <div class="ui-line add ui-line-in" style="animation-delay:.58s"></div>
+            <div class="ui-line add ui-line-in" style="animation-delay:.74s"></div>
+          </div>
+
+          <button class="mt-6 bg-black text-white px-6 py-2 rounded-xl font-sans">Run Redline</button>
+        </div>
+      </div>
+    </div>
+
+    <!-- 3) Drafting -->
+    <div class="reveal-sect grid grid-cols-1 md:grid-cols-2 gap-12 items-center">
+      <!-- UI animacija -->
+      <div class="parallax" data-speed="0.22">
+        <div class="bg-ink-800/80 backdrop-blur rounded-2xl p-6 shadow-2xl">
+          <p class="font-sans text-neutral-200 mb-4">Draft a motion from precedents and facts.</p>
+
+          <div class="bg-white rounded-lg p-4 text-black">
+            <div class="text-xs uppercase tracking-wide text-neutral-500 mb-1">Editor</div>
+            <!-- simulacija pisanja in pojavljanja blokov -->
+            <div class="ui-draft ui-draft-in font-serif text-[15px]">
+              <span>In the matter before the Court,</span>
+              <span> the Defendant moves to dismiss for lack of personal jurisdiction.</span>
+              <span> Plaintiff fails to establish minimum contacts under</span>
+              <span> International Shoe and its progeny.</span>
+              <span> Therefore, dismissal is warranted.</span>
+            </div>
+            <!-- podpis + kazalec -->
+            <div class="mt-4 font-sans text-sm text-neutral-700 ui-cursor">/s/ Jane Counsel</div>
+          </div>
+
+          <button class="mt-6 bg-black text-white px-6 py-2 rounded-xl font-sans">Generate Draft</button>
+        </div>
+      </div>
+
+      <!-- Tekst -->
+      <div class="parallax" data-speed="-0.12">
+        <h2 class="font-serif text-4xl md:text-5xl leading-tight mb-4">
+          Osnutki na nivoju partnerja
+        </h2>
+        <p class="font-sans text-neutral-300 mb-4">
+          Uporabite predhodne primere, stile hiše in podatke iz zadev za prvovrsten osnutek.
+        </p>
+        <a href="#editor" class="font-sans ai-anim inline-flex items-center gap-2">Open Editor →</a>
+      </div>
+    </div>
+
+  </div>
+</section>
+<!-- ================= /SHOWCASE ================= -->
 
 <!-- VIDEO BLOCK -->
 <section id="demo" class="bg-white">
@@ -198,7 +323,7 @@
   </div>
 </section>
 
-<!-- POVPRAŠEVANJE (LOČENO, BELO OZADJE) -->
+<!-- POVPRAŠEVANJE -->
 <section id="contact" class="bg-white text-black py-16 font-sans">
   <div class="mx-auto max-w-2xl px-6">
     <h2 class="text-3xl font-bold text-center mb-6">Pošljite povpraševanje</h2>
@@ -255,11 +380,45 @@
   </div>
 </footer>
 
+<!-- JS: mobile menu + scroll parallax + reveal + trigger UI animacij -->
 <script>
+  // Mobile menu
   const btn = document.getElementById('mbtn');
   const panel = document.getElementById('mpanel');
   if (btn && panel) btn.addEventListener('click', () => panel.classList.toggle('hidden'));
+
+  // Parallax on scroll — map scroll to element-specific speed
+  const parallaxEls = Array.from(document.querySelectorAll('.parallax'));
+  const setParallax = () => {
+    const vh = window.innerHeight;
+    parallaxEls.forEach(el => {
+      const rect = el.getBoundingClientRect();
+      const center = rect.top + rect.height/2 - vh/2; // pos relativno do središča ekrana
+      const speed = parseFloat(el.dataset.speed || 0.2);
+      el.style.setProperty('--y', Math.max(-60, Math.min(60, center * speed)));
+    });
+  };
+  window.addEventListener('scroll', setParallax, { passive:true });
+  window.addEventListener('resize', setParallax);
+  setParallax();
+
+  // Reveal sections + zagon “UI” animacij, ko pridejo v vidno polje
+  const revObs = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('revealed');
+        // enable any paused effects (we're using running by default)
+        // re-trigger keyframes that depend on class
+        const draft = e.target.querySelector('.ui-draft');
+        if(draft){ draft.classList.add('ui-draft-in'); }
+      }
+    });
+  }, { threshold: 0.25 });
+  document.querySelectorAll('.reveal-sect').forEach(el=>revObs.observe(el));
 </script>
 
 </body>
 </html>
+```
+
+Če želiš, lahko te “UI animacije” nadomestim z **pravimi posnetki zaslona** (MP4/WebM) in jih enako parallax‑premikam; samo priskrbi videe ali GIFe (ali reči, naj pripravim placeholder <video> bloke).
