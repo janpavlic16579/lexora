@@ -350,7 +350,8 @@
       Izpolnite spodnji obrazec in kontaktirali vas bomo v najkrajšem možnem času.
     </p>
 
-    <form action="mailto:tvoj.email@domena.com" method="POST" enctype="text/plain" class="space-y-6">
+    <!-- !!! Spremenjen form (brez action="mailto") -->
+    <form id="contactForm" class="space-y-6">
       <div>
         <label for="name" class="block text-sm font-medium text-neutral-300">Ime in priimek</label>
         <input type="text" id="name" name="name" required
@@ -358,7 +359,7 @@
       </div>
 
       <div>
-        <label for="email" class="block text-sm font-medium text-neutral-300">E‑pošta</label>
+        <label for="email" class="block text-sm font-medium text-neutral-300">E-pošta</label>
         <input type="email" id="email" name="email" required
                class="mt-1 block w-full rounded-md bg-neutral-900 border border-neutral-700 text-white placeholder-neutral-500 p-3 focus:outline-none focus:ring-2 focus:ring-pink-500 focus:border-pink-500 transition">
       </div>
@@ -377,13 +378,50 @@
 
       <div class="text-center">
         <button type="submit" class="btn-demo">Pošlji povpraševanje</button>
-        <p class="mt-4 text-sm text-neutral-400">
+        <p id="formStatus" class="mt-4 text-sm text-neutral-400"></p>
+        <p class="mt-2 text-sm text-neutral-400">
           Ali raje govorite? <a href="tel:+38600000000" class="ai-anim">Pokličite nas →</a>
         </p>
       </div>
     </form>
   </div>
 </section>
+
+<!-- JS za povezavo z Google Sheets -->
+<script>
+  // TUKAJ prilepi svoj URL iz Apps Script (konča se na /exec)
+  const scriptURL = "https://script.google.com/macros/s/AKfycbwhudUoFXdwD4XPvlKYdCv8ZXqneZoBpwBae3e1CUyxzzYeKH8Te2YVg6VYEglrRl_K/exec";
+
+  document.getElementById("contactForm").addEventListener("submit", async function(e){
+    e.preventDefault();
+    const form = e.target;
+
+    const data = {
+      name: form.name.value,
+      email: form.email.value,
+      phone: form.phone.value,
+      message: form.message.value
+    };
+
+    try {
+      const res = await fetch(scriptURL, {
+        method: "POST",
+        body: JSON.stringify(data),
+        headers: { "Content-Type": "application/json" }
+      });
+      const result = await res.json();
+      if(result.result === "success"){
+        document.getElementById("formStatus").innerText = "✅ Hvala! Vaše povpraševanje smo prejeli.";
+        form.reset();
+      } else {
+        document.getElementById("formStatus").innerText = "⚠️ Prišlo je do napake. Poskusite znova.";
+      }
+    } catch (err){
+      document.getElementById("formStatus").innerText = "❌ Napaka pri pošiljanju.";
+    }
+  });
+</script>
+
 
 <!-- FOOTER -->
 <footer class="bg-ink-950 text-neutral-300">
