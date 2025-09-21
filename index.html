@@ -350,7 +350,7 @@
       Izpolnite spodnji obrazec in kontaktirali vas bomo v najkrajšem možnem času.
     </p>
 
-    <!-- !!! Spremenjen form (brez action="mailto") -->
+    <!-- BREZ action="mailto" -->
     <form id="contactForm" class="space-y-6">
       <div>
         <label for="name" class="block text-sm font-medium text-neutral-300">Ime in priimek</label>
@@ -377,7 +377,7 @@
       </div>
 
       <div class="text-center">
-        <button type="submit" class="btn-demo">Pošlji povpraševanje</button>
+        <button id="submitBtn" type="submit" class="btn-demo">Pošlji povpraševanje</button>
         <p id="formStatus" class="mt-4 text-sm text-neutral-400"></p>
         <p class="mt-2 text-sm text-neutral-400">
           Ali raje govorite? <a href="tel:+38600000000" class="ai-anim">Pokličite nas →</a>
@@ -387,40 +387,45 @@
   </div>
 </section>
 
-<!-- JS za povezavo z Google Sheets -->
 <script>
-  // TUKAJ prilepi svoj URL iz Apps Script (konča se na /exec)
+  // 1) PRILEPI SVOJ /exec URL
   const scriptURL = "https://script.google.com/macros/s/AKfycbwhudUoFXdwD4XPvlKYdCv8ZXqneZoBpwBae3e1CUyxzzYeKH8Te2YVg6VYEglrRl_K/exec";
 
-  document.getElementById("contactForm").addEventListener("submit", async function(e){
-    e.preventDefault();
-    const form = e.target;
+  // 2) Pošiljanje kot FormData (brez ročnih headerjev)
+  const form = document.getElementById("contactForm");
+  const statusEl = document.getElementById("formStatus");
+  const submitBtn = document.getElementById("submitBtn");
 
-    const data = {
-      name: form.name.value,
-      email: form.email.value,
-      phone: form.phone.value,
-      message: form.message.value
-    };
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    statusEl.textContent = "Pošiljam …";
+    submitBtn.disabled = true; submitBtn.style.opacity = .7;
 
     try {
-      const res = await fetch(scriptURL, {
-        method: "POST",
-        body: JSON.stringify(data),
-        headers: { "Content-Type": "application/json" }
-      });
-      const result = await res.json();
-      if(result.result === "success"){
-        document.getElementById("formStatus").innerText = "✅ Hvala! Vaše povpraševanje smo prejeli.";
+      const body = new URLSearchParams(new FormData(form)); // ← to dela z e.parameter
+      const res  = await fetch(scriptURL, { method: "POST", body });
+
+      // Apps Script vrne JSON; preberi kot text → JSON (za vsak primer)
+      const text = await res.text();
+      let data = {};
+      try { data = JSON.parse(text); } catch(_) {}
+
+      if (res.ok && data.ok) {
+        statusEl.textContent = "✅ Hvala! Vaše povpraševanje smo prejeli.";
         form.reset();
       } else {
-        document.getElementById("formStatus").innerText = "⚠️ Prišlo je do napake. Poskusite znova.";
+        statusEl.textContent = "⚠️ Prišlo je do napake. Poskusite znova.";
+        console.error("Response:", res.status, text);
       }
-    } catch (err){
-      document.getElementById("formStatus").innerText = "❌ Napaka pri pošiljanju.";
+    } catch (err) {
+      statusEl.textContent = "❌ Napaka pri pošiljanju.";
+      console.error(err);
+    } finally {
+      submitBtn.disabled = false; submitBtn.style.opacity = 1;
     }
   });
 </script>
+
 
 
 <!-- FOOTER -->
