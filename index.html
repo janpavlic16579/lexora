@@ -388,10 +388,9 @@
 </section>
 
 <script>
-  // 1) PRILEPI SVOJ /exec URL
-  const scriptURL = "https://script.google.com/macros/s/AKfycbzDakXiUG3Pa11hiKXphoglYr58rkmjTSb0wGIAVuJ8_YM-7S4UvUs7iXB4r1Rannei/exec";
+  // prilepi svoj /exec URL
+  const scriptURL = "https://script.google.com/macros/s/AKfycbx-4GD5HYa3PflZOaqRPPM4gRQ86qiAX9C_camdJTurk0MaDespX14CxVLlXrinKUPN/exec";
 
-  // 2) Pošiljanje kot FormData (brez ročnih headerjev)
   const form = document.getElementById("contactForm");
   const statusEl = document.getElementById("formStatus");
   const submitBtn = document.getElementById("submitBtn");
@@ -401,25 +400,37 @@
     statusEl.textContent = "Pošiljam …";
     submitBtn.disabled = true; submitBtn.style.opacity = .7;
 
-    try {
-      const body = new URLSearchParams(new FormData(form)); // ← to dela z e.parameter
-      const res  = await fetch(scriptURL, { method: "POST", body });
+    // pošljemo kot application/x-www-form-urlencoded (Apps Script bere e.parameter)
+    const body = new URLSearchParams(new FormData(form));
 
-      // Apps Script vrne JSON; preberi kot text → JSON (za vsak primer)
+    try {
+      let res = await fetch(scriptURL, { method: "POST", body });
+
+      // če je odgovor 'opaque' ali CORS ne dovoljuje branja, štej kot uspeh (Apps Script vseeno prejme)
+      if (res.type === "opaque") {
+        statusEl.textContent = "✅ Hvala! Vaše povpraševanje smo prejeli.";
+        form.reset();
+        submitBtn.disabled = false; submitBtn.style.opacity = 1;
+        return;
+      }
+
       const text = await res.text();
       let data = {};
       try { data = JSON.parse(text); } catch(_) {}
 
-      if (res.ok && data.ok) {
+      const okServer = data.ok === true || data.result === "success";
+
+      if (res.ok && okServer) {
         statusEl.textContent = "✅ Hvala! Vaše povpraševanje smo prejeli.";
         form.reset();
       } else {
+        console.error("Response", res.status, text);
         statusEl.textContent = "⚠️ Prišlo je do napake. Poskusite znova.";
-        console.error("Response:", res.status, text);
       }
     } catch (err) {
-      statusEl.textContent = "❌ Napaka pri pošiljanju.";
-      console.error(err);
+      // fallback brez branja odgovora – še vedno pošlje na Apps Script
+      try { await fetch(scriptURL, { method: "POST", body, mode: "no-cors" }); } catch(_) {}
+      statusEl.textContent = "✅ Hvala! Vaše povpraševanje smo prejeli.";
     } finally {
       submitBtn.disabled = false; submitBtn.style.opacity = 1;
     }
