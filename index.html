@@ -207,10 +207,10 @@
 
       <!-- 1) Iskanje po sodni praksi -->
       <article class="slide-in group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
+        <!-- ambient glow -->
         <div class="absolute -inset-40 bg-gradient-to-tr from-pink-600/10 via-fuchsia-500/5 to-purple-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
-        <div class="absolute top-4 right-4 z-10">
-          <span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span>
-        </div>
+        <!-- badge -->
+        <div class="absolute top-4 right-4 z-10"><span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span></div>
 
         <div class="p-8 pt-12">
           <h3 class="text-2xl font-semibold pr-24 leading-tight">Iskanje po sodni praksi</h3>
@@ -219,15 +219,38 @@
             Neposreden dostop do baze slovenskih sodb. Vprašaj v naravnem jeziku in prejmi točne zadetke iz
             <span class="underline decoration-pink-500/60 underline-offset-4">sodnapraksa.si</span> – brez dolgotrajnega brskanja.
           </p>
+
+          <!-- Animacija: iskalna vrstica + “rezultati” -->
+          <div class="mt-8">
+            <div class="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4">
+              <div class="flex items-center gap-3">
+                <div class="w-8 h-8 rounded-xl bg-neutral-800 animate-pulse"></div>
+                <div class="flex-1 h-10 rounded-xl bg-neutral-800/70 relative overflow-hidden shimmer"></div>
+                <button class="ml-3 px-4 h-10 rounded-xl bg-pink-600/80 hover:bg-pink-600 transition text-sm">Išči</button>
+              </div>
+
+              <div class="mt-5 space-y-3">
+                <div class="h-4 rounded bg-neutral-800/80 slide-line"></div>
+                <div class="h-4 rounded bg-neutral-800/80 slide-line delay-75"></div>
+                <div class="h-4 rounded bg-neutral-800/80 slide-line delay-150"></div>
+                <div class="h-4 rounded bg-neutral-800/80 slide-line delay-225"></div>
+              </div>
+
+              <div class="mt-5 grid grid-cols-4 gap-2">
+                <div class="h-2 rounded bg-emerald-500/80 w-full bar-pulse"></div>
+                <div class="h-2 rounded bg-emerald-500/70 w-4/5 bar-pulse delay-100"></div>
+                <div class="h-2 rounded bg-rose-500/80 w-3/5 bar-pulse delay-200"></div>
+                <div class="h-2 rounded bg-emerald-500/70 w-4/6 bar-pulse delay-300"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- 2) Iskanje po zakonodaji -->
       <article class="slide-in group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
         <div class="absolute -inset-40 bg-gradient-to-tr from-cyan-500/10 via-sky-400/5 to-blue-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
-        <div class="absolute top-4 right-4 z-10">
-          <span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span>
-        </div>
+        <div class="absolute top-4 right-4 z-10"><span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span></div>
 
         <div class="p-8 pt-12">
           <h3 class="text-2xl font-semibold pr-24 leading-tight">Iskanje po zakonodaji</h3>
@@ -236,15 +259,34 @@
             Preglej veljavne zakone in predpise iz <span class="underline decoration-sky-400/60 underline-offset-4">PISRS</span>.
             Hitro najdi člen, ki ga potrebuješ, in prejmi razlago ali povzetek, prilagojen tvojemu primeru.
           </p>
+
+          <!-- Animacija: “členi” kot kartice s highlightom -->
+          <div class="mt-8">
+            <div class="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4">
+              <div class="grid grid-cols-3 gap-3">
+                <div class="h-28 rounded-xl bg-neutral-800/80 hover:bg-neutral-700/60 transition relative slide-line">
+                  <div class="absolute top-3 left-3 h-3 w-14 bg-sky-400/70 rounded"></div>
+                  <div class="absolute bottom-3 left-3 right-3 h-2 bg-neutral-700 rounded"></div>
+                </div>
+                <div class="h-28 rounded-xl bg-neutral-800/80 hover:bg-neutral-700/60 transition relative slide-line delay-100">
+                  <div class="absolute top-3 left-3 h-3 w-16 bg-sky-400/70 rounded"></div>
+                  <div class="absolute bottom-3 left-3 right-3 h-2 bg-neutral-700 rounded"></div>
+                </div>
+                <div class="h-28 rounded-xl bg-neutral-800/80 hover:bg-neutral-700/60 transition relative slide-line delay-200">
+                  <div class="absolute top-3 left-3 h-3 w-12 bg-sky-400/70 rounded"></div>
+                  <div class="absolute bottom-3 left-3 right-3 h-2 bg-neutral-700 rounded"></div>
+                </div>
+              </div>
+              <div class="mt-4 h-10 rounded-xl bg-neutral-800/70 relative overflow-hidden shimmer"></div>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- 3) Iskanje po pravu EU -->
       <article class="slide-in group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
         <div class="absolute -inset-40 bg-gradient-to-tr from-indigo-500/10 via-violet-500/5 to-fuchsia-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
-        <div class="absolute top-4 right-4 z-10">
-          <span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span>
-        </div>
+        <div class="absolute top-4 right-4 z-10"><span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span></div>
 
         <div class="p-8 pt-12">
           <h3 class="text-2xl font-semibold pr-24 leading-tight">Iskanje po pravu EU</h3>
@@ -252,15 +294,30 @@
           <p class="text-neutral-300/90 mt-2 leading-relaxed">
             Brez zapletenega iskanja po EUR-Lex – z enim klikom do direktiv, uredb in sodb Sodišča EU, ki so ključne za tvoj primer.
           </p>
+
+          <!-- Animacija: timeline / reference trakovi -->
+          <div class="mt-8">
+            <div class="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4 space-y-2">
+              <div class="h-3 rounded bg-neutral-800/90 slide-line"></div>
+              <div class="h-3 rounded bg-neutral-800/90 slide-line delay-75"></div>
+              <div class="h-3 rounded bg-neutral-800/90 slide-line delay-150"></div>
+
+              <div class="pt-2 grid grid-cols-5 gap-2">
+                <div class="h-2 rounded bg-indigo-400/80 bar-pulse"></div>
+                <div class="h-2 rounded bg-indigo-400/70 bar-pulse delay-100"></div>
+                <div class="h-2 rounded bg-indigo-400/60 bar-pulse delay-200"></div>
+                <div class="h-2 rounded bg-rose-500/80 bar-pulse delay-300"></div>
+                <div class="h-2 rounded bg-emerald-500/80 bar-pulse delay-500"></div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
       <!-- 4) Dokument QA -->
       <article class="slide-in group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
         <div class="absolute -inset-40 bg-gradient-to-tr from-emerald-500/10 via-teal-400/5 to-cyan-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
-        <div class="absolute top-4 right-4 z-10">
-          <span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span>
-        </div>
+        <div class="absolute top-4 right-4 z-10"><span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span></div>
 
         <div class="p-8 pt-12">
           <h3 class="text-2xl font-semibold pr-24 leading-tight">Dokument QA</h3>
@@ -269,6 +326,36 @@
             Naloži pogodbo ali pravni dokument in postavljaj vprašanja: “Kje je omejitev odgovornosti?”, “Kaj določa o prenehanju?”.
             Takoj dobiš jasne odgovore – brez ročnega pregledovanja.
           </p>
+
+          <!-- Animacija: chat mehurčki + označen izsek -->
+          <div class="mt-8">
+            <div class="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4">
+              <div class="space-y-3">
+                <div class="max-w-[75%] rounded-2xl bg-neutral-800/80 p-3 slide-line">
+                  <div class="h-3 w-40 bg-neutral-700 rounded mb-2"></div>
+                  <div class="h-2 w-24 bg-neutral-700 rounded"></div>
+                </div>
+                <div class="ml-auto max-w-[80%] rounded-2xl bg-emerald-600/80 p-3 slide-line delay-100">
+                  <div class="h-3 w-36 bg-emerald-300/40 rounded mb-2"></div>
+                  <div class="h-2 w-20 bg-emerald-300/30 rounded"></div>
+                </div>
+                <div class="max-w-[85%] rounded-2xl bg-neutral-800/80 p-3 slide-line delay-200">
+                  <div class="h-3 w-48 bg-neutral-700 rounded mb-2"></div>
+                  <div class="h-2 w-28 bg-neutral-700 rounded"></div>
+                </div>
+              </div>
+
+              <div class="mt-5 rounded-xl border border-emerald-500/40 p-3 relative">
+                <div class="absolute -top-2 left-4 px-2 text-xs bg-neutral-900 text-emerald-300 rounded">Najdeno v dokumentu</div>
+                <div class="space-y-2">
+                  <div class="h-3 bg-neutral-800 rounded"></div>
+                  <div class="h-3 bg-neutral-800 rounded"></div>
+                  <div class="h-3 bg-emerald-700/60 rounded"></div>
+                  <div class="h-3 bg-neutral-800 rounded"></div>
+                </div>
+              </div>
+            </div>
+          </div>
         </div>
       </article>
 
@@ -276,20 +363,45 @@
   </div>
 </section>
 
-<!-- Extra CSS -->
+<!-- ====== Minimalni dodatni CSS in JS za animacije ====== -->
 <style>
+  .shimmer::after{content:"";position:absolute;inset:0;transform:translateX(-100%);
+    background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 50%, transparent 100%);
+    animation: shimmer 2.2s infinite;}
+  @keyframes shimmer{100%{transform:translateX(100%)}}
+
+  .bar-pulse{animation:barPulse 1.8s ease-in-out infinite; transform-origin:left center;}
+  @keyframes barPulse{0%,100%{transform:scaleX(.98);opacity:.85}50%{transform:scaleX(1);opacity:1}}
+
   .slide-in{opacity:0; transform:translateY(10px);}
   .slide-in.is-visible{opacity:1; transform:none; transition:all .6s cubic-bezier(.22,1,.36,1);}
-  .soon-badge{background:linear-gradient(90deg,#ffb347,#ffcc33,#ff8c00,#ffb347);background-size:200% 100%;
-    animation:gradientShift 3s ease infinite;box-shadow:0 0 0 1px rgba(255,140,0,.35),0 6px 18px rgba(255,140,0,.15);}
+  .slide-line{opacity:0; transform:translateY(6px);}
+  .slide-line.is-visible{opacity:1; transform:none; transition:all .6s ease;}
+  .delay-75{transition-delay:.075s} .delay-100{transition-delay:.1s}
+  .delay-150{transition-delay:.15s} .delay-200{transition-delay:.2s}
+  .delay-225{transition-delay:.225s} .delay-300{transition-delay:.3s} .delay-500{transition-delay:.5s}
+
+  .soon-badge{
+    background:linear-gradient(90deg,#ffb347,#ffcc33,#ff8c00,#ffb347);
+    background-size:200% 100%;
+    animation:gradientShift 3s ease infinite;
+    box-shadow:0 0 0 1px rgba(255,140,0,.35),0 6px 18px rgba(255,140,0,.15);
+  }
   @keyframes gradientShift{0%{background-position:0% 50%}50%{background-position:100% 50%}100%{background-position:0% 50%}}
 </style>
 <script>
-  // Reveal on scroll
-  const observer = new IntersectionObserver((entries)=>{
-    entries.forEach(e=>{ if(e.isIntersecting){ e.target.classList.add('is-visible'); } });
+  // reveal on scroll
+  const io = new IntersectionObserver((entries)=>{
+    entries.forEach(e=>{
+      if(e.isIntersecting){
+        e.target.classList.add('is-visible');
+        // reveal nested lines too
+        e.target.querySelectorAll('.slide-line').forEach((n)=>n.classList.add('is-visible'));
+        io.unobserve(e.target);
+      }
+    });
   }, {threshold:.2});
-  document.querySelectorAll('#features .slide-in').forEach(el=>observer.observe(el));
+  document.querySelectorAll('#features .slide-in').forEach(el=>io.observe(el));
 </script>
 
   
