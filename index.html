@@ -192,223 +192,227 @@
   </div>
 </section>
 
-<!-- ====== FUNKCIONALNOSTI ====== -->
-<section id="features" class="bg-black text-white py-24">
-  <div class="mx-auto max-w-6xl px-6">
-    <header class="mb-14">
-      <h2 class="font-serif text-4xl md:text-5xl">Funkcionalnosti</h2>
-      <p class="text-neutral-300 mt-4 max-w-2xl">Vse, kar pravnik potrebuje za hitro raziskavo in odgovore — na enem mestu.</p>
-    </header>
 
-    <div class="grid md:grid-cols-2 gap-8">
+import React, { useEffect } from "react";
+import { motion, AnimatePresence } from "framer-motion";
 
-      <!-- 1) Iskanje po sodni praksi -->
-      <article class="group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
-        <div class="absolute inset-0 pointer-events-none">
-          <!-- glow -->
-          <div class="absolute -inset-40 bg-gradient-to-tr from-pink-600/10 via-fuchsia-500/5 to-purple-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition"></div>
-        </div>
+// Lexora Features Section – React previewable component
+// Tailwind is available in this canvas runtime.
 
-        <div class="p-8">
-          <h3 class="text-2xl font-semibold">Iskanje po sodni praksi</h3>
-          <p class="text-neutral-300 mt-3">Najdi relevantne sodbe v sekundah</p>
-          <p class="text-neutral-400 mt-2">
-            Neposreden dostop do baze slovenskih sodb. Vprašaj v naravnem jeziku in prejmi točne zadetke iz
-            <span class="underline decoration-pink-500/60 underline-offset-4">sodnapraksa.si</span> – brez dolgotrajnega brskanja.
-          </p>
-
-          <!-- Animacija: iskalna vrstica + “rezultati” -->
-          <div class="mt-8">
-            <div class="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4">
-              <div class="flex items-center gap-3">
-                <div class="w-8 h-8 rounded-xl bg-neutral-800 animate-pulse"></div>
-                <div class="flex-1 h-10 rounded-xl bg-neutral-800/70 relative overflow-hidden shimmer"></div>
-                <button class="ml-3 px-4 h-10 rounded-xl bg-pink-600/80 hover:bg-pink-600 transition text-sm">Išči</button>
-              </div>
-
-              <div class="mt-5 space-y-3">
-                <div class="h-4 rounded bg-neutral-800/80 slide-in"></div>
-                <div class="h-4 rounded bg-neutral-800/80 slide-in delay-75"></div>
-                <div class="h-4 rounded bg-neutral-800/80 slide-in delay-150"></div>
-                <div class="h-4 rounded bg-neutral-800/80 slide-in delay-200"></div>
-              </div>
-
-              <div class="mt-5 grid grid-cols-4 gap-2">
-                <div class="h-2 rounded bg-emerald-500/80 w-full bar-pulse"></div>
-                <div class="h-2 rounded bg-emerald-500/70 w-4/5 bar-pulse delay-100"></div>
-                <div class="h-2 rounded bg-rose-500/80 w-3/5 bar-pulse delay-200"></div>
-                <div class="h-2 rounded bg-emerald-500/70 w-4/6 bar-pulse delay-300"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 2) Iskanje po zakonodaji -->
-      <article class="group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
-        <div class="absolute inset-0 pointer-events-none">
-          <div class="absolute -inset-40 bg-gradient-to-tr from-cyan-500/10 via-sky-400/5 to-blue-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition"></div>
-        </div>
-
-        <div class="p-8">
-          <h3 class="text-2xl font-semibold">Iskanje po zakonodaji</h3>
-          <p class="text-neutral-300 mt-3">Vedno ažurni členi zakonov</p>
-          <p class="text-neutral-400 mt-2">
-            Preglej veljavne zakone in predpise iz <span class="underline decoration-sky-400/60 underline-offset-4">PISRS</span>.
-            Hitro najdi člen, ki ga potrebuješ, in prejmi razlago ali povzetek, prilagojen tvojemu primeru.
-          </p>
-
-          <!-- Animacija: “členi” kot kartice s highlightom -->
-          <div class="mt-8">
-            <div class="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4">
-              <div class="grid grid-cols-3 gap-3">
-                <div class="h-28 rounded-xl bg-neutral-800/80 hover:bg-neutral-700/60 transition relative slide-in">
-                  <div class="absolute top-3 left-3 h-3 w-14 bg-sky-400/70 rounded"></div>
-                  <div class="absolute bottom-3 left-3 right-3 h-2 bg-neutral-700 rounded"></div>
-                </div>
-                <div class="h-28 rounded-xl bg-neutral-800/80 hover:bg-neutral-700/60 transition relative slide-in delay-100">
-                  <div class="absolute top-3 left-3 h-3 w-16 bg-sky-400/70 rounded"></div>
-                  <div class="absolute bottom-3 left-3 right-3 h-2 bg-neutral-700 rounded"></div>
-                </div>
-                <div class="h-28 rounded-xl bg-neutral-800/80 hover:bg-neutral-700/60 transition relative slide-in delay-200">
-                  <div class="absolute top-3 left-3 h-3 w-12 bg-sky-400/70 rounded"></div>
-                  <div class="absolute bottom-3 left-3 right-3 h-2 bg-neutral-700 rounded"></div>
-                </div>
-              </div>
-              <div class="mt-4 h-10 rounded-xl bg-neutral-800/70 relative overflow-hidden shimmer"></div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 3) Iskanje po pravu EU -->
-      <article class="group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
-        <div class="absolute inset-0 pointer-events-none">
-          <div class="absolute -inset-40 bg-gradient-to-tr from-indigo-500/10 via-violet-500/5 to-fuchsia-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition"></div>
-        </div>
-
-        <div class="p-8">
-          <h3 class="text-2xl font-semibold">Iskanje po pravu EU</h3>
-          <p class="text-neutral-300 mt-3">Dostop do evropskega prava na enem mestu</p>
-          <p class="text-neutral-400 mt-2">
-            Brez zapletenega iskanja po EUR-Lex – z enim klikom do direktiv, uredb in sodb Sodišča EU, ki so ključne za tvoj primer.
-          </p>
-
-          <!-- Animacija: timeline / reference trakovi -->
-          <div class="mt-8">
-            <div class="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4 space-y-2">
-              <div class="h-3 rounded bg-neutral-800/90 slide-in"></div>
-              <div class="h-3 rounded bg-neutral-800/90 slide-in delay-75"></div>
-              <div class="h-3 rounded bg-neutral-800/90 slide-in delay-150"></div>
-
-              <div class="pt-2 grid grid-cols-5 gap-2">
-                <div class="h-2 rounded bg-indigo-400/80 bar-pulse"></div>
-                <div class="h-2 rounded bg-indigo-400/70 bar-pulse delay-100"></div>
-                <div class="h-2 rounded bg-indigo-400/60 bar-pulse delay-200"></div>
-                <div class="h-2 rounded bg-rose-500/80 bar-pulse delay-300"></div>
-                <div class="h-2 rounded bg-emerald-500/80 bar-pulse delay-500"></div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-      <!-- 4) Dokument QA -->
-      <article class="group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
-        <div class="absolute inset-0 pointer-events-none">
-          <div class="absolute -inset-40 bg-gradient-to-tr from-emerald-500/10 via-teal-400/5 to-cyan-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition"></div>
-        </div>
-
-        <div class="p-8">
-          <h3 class="text-2xl font-semibold">Dokument QA</h3>
-          <p class="text-neutral-300 mt-3">Pogovarjaj se s svojimi dokumenti</p>
-          <p class="text-neutral-400 mt-2">
-            Naloži pogodbo ali pravni dokument in postavljaj vprašanja: “Kje je omejitev odgovornosti?”, “Kaj določa o prenehanju?”.
-            Takoj dobiš jasne odgovore – brez ročnega pregledovanja.
-          </p>
-
-          <!-- Animacija: chat mehurčki + označen izsek -->
-          <div class="mt-8">
-            <div class="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4">
-              <div class="space-y-3">
-                <div class="max-w-[75%] rounded-2xl bg-neutral-800/80 p-3 slide-in">
-                  <div class="h-3 w-40 bg-neutral-700 rounded mb-2"></div>
-                  <div class="h-2 w-24 bg-neutral-700 rounded"></div>
-                </div>
-                <div class="ml-auto max-w-[80%] rounded-2xl bg-emerald-600/80 p-3 slide-in delay-100">
-                  <div class="h-3 w-36 bg-emerald-300/40 rounded mb-2"></div>
-                  <div class="h-2 w-20 bg-emerald-300/30 rounded"></div>
-                </div>
-                <div class="max-w-[85%] rounded-2xl bg-neutral-800/80 p-3 slide-in delay-200">
-                  <div class="h-3 w-48 bg-neutral-700 rounded mb-2"></div>
-                  <div class="h-2 w-28 bg-neutral-700 rounded"></div>
-                </div>
-              </div>
-
-              <div class="mt-5 rounded-xl border border-emerald-500/40 p-3 relative">
-                <div class="absolute -top-2 left-4 px-2 text-xs bg-neutral-900 text-emerald-300 rounded">Najdeno v dokumentu</div>
-                <div class="space-y-2">
-                  <div class="h-3 bg-neutral-800 rounded"></div>
-                  <div class="h-3 bg-neutral-800 rounded"></div>
-                  <div class="h-3 bg-emerald-700/60 rounded"></div>
-                  <div class="h-3 bg-neutral-800 rounded"></div>
-                </div>
-              </div>
-            </div>
-          </div>
-        </div>
-      </article>
-
-    </div>
-  </div>
-</section>
-
-<!-- ====== Animacije / util razredi ====== -->
-<style>
-  /* shimmer za iskalno polje */
-  .shimmer::after{
-    content:"";
-    position:absolute; inset:0;
-    transform:translateX(-100%);
+const shimmerKeyframes = `
+  .shimmer::after{content:\"\";position:absolute;inset:0;transform:translateX(-100%);
     background:linear-gradient(120deg, transparent 0%, rgba(255,255,255,.08) 50%, transparent 100%);
-    animation: shimmer 2.2s infinite;
+    animation: shimmer 2.2s infinite;}
+  @keyframes shimmer{100%{transform:translateX(100%);}}
+  .bar-pulse{animation:barPulse 1.8s ease-in-out infinite;}
+  @keyframes barPulse{0%,100%{transform:scaleX(.98);opacity:.85;}50%{transform:scaleX(1);opacity:1;}}
+  /* Soon badge gradient animation */
+  .soon-badge{
+    background: linear-gradient(90deg, #ffb347, #ffcc33, #ff8c00, #ffb347);
+    background-size: 200% 100%;
+    animation: gradientShift 3s ease infinite;
+    box-shadow: 0 0 0 1px rgba(255,140,0,.35), 0 6px 18px rgba(255,140,0,.15);
   }
-  @keyframes shimmer{ 100% { transform:translateX(100%);} }
-
-  /* vstopna animacija */
-  .slide-in{ opacity:0; transform:translateY(8px); animation: slideIn .7s ease forwards; }
-  .delay-75{ animation-delay:.075s; }
-  .delay-100{ animation-delay:.1s; }
-  .delay-150{ animation-delay:.15s; }
-  .delay-200{ animation-delay:.2s; }
-  .delay-300{ animation-delay:.3s; }
-  .delay-500{ animation-delay:.5s; }
-  @keyframes slideIn { to { opacity:1; transform:translateY(0);} }
-
-  /* utripajoči trakovi (score / metrični) */
-  .bar-pulse{ animation: barPulse 1.8s ease-in-out infinite; }
-  @keyframes barPulse {
-    0%,100% { transform: scaleX(.98); opacity:.85; }
-    50% { transform: scaleX(1); opacity:1; }
+  @keyframes gradientShift{
+    0%{background-position:0% 50%;}
+    50%{background-position:100% 50%;}
+    100%{background-position:0% 50%;}
   }
-</style>
+`;
 
-<script>
-  // Stagger ob vstopu v viewport (IntersectionObserver)
-  (function(){
-    const els = document.querySelectorAll('#features .slide-in');
-    const io = new IntersectionObserver((entries)=>{
-      entries.forEach(e=>{
-        if(e.isIntersecting){ e.target.style.animationPlayState='running'; io.unobserve(e.target); }
-      });
-    }, {threshold: .2});
-    els.forEach(el=>{
-      el.style.animationPlayState='paused';
-      io.observe(el);
-    });
-  })();
-</script>
+const cardVariants = {
+  hidden: { opacity: 0, y: 10 },
+  visible: (i: number) => ({
+    opacity: 1,
+    y: 0,
+    transition: { delay: i * 0.08, duration: 0.5, ease: "easeOut" },
+  }),
+};
 
+export default function FeaturesSection() {
+  useEffect(() => {
+    const style = document.createElement("style");
+    style.innerHTML = shimmerKeyframes;
+    document.head.appendChild(style);
+    return () => { document.head.removeChild(style); };
+  }, []);
+
+  return (
+    <section id="features" className="bg-black text-white py-20 md:py-24">
+      <div className="mx-auto max-w-6xl px-6">
+        <header className="mb-14">
+          <h2 className="font-serif text-4xl md:text-5xl tracking-tight">Funkcionalnosti</h2>
+          <p className="text-neutral-300 mt-4 max-w-2xl">
+            Vse, kar pravnik potrebuje za hitro raziskavo in odgovore — na enem mestu.
+          </p>
+        </header>
+
+        <div className="grid grid-cols-1 gap-8\">
+          {/* 1) Iskanje po sodni praksi */}
+          <FeatureCard index={0}
+            title="Iskanje po sodni praksi"
+            subtitle="Najdi relevantne sodbe v sekundah"
+            description={(
+              <>
+                Neposreden dostop do baze slovenskih sodb. Vprašaj v naravnem jeziku in prejmi točne zadetke iz
+                <span className="underline decoration-pink-500/60 underline-offset-4"> sodnapraksa.si</span> – brez dolgotrajnega brskanja.
+              </>
+            )}
+            glow="from-pink-600/10 via-fuchsia-500/5 to-purple-500/10"
+          >
+            <div className="mt-8">
+              <div className="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4">
+                <div className="flex items-center gap-3">
+                  <div className="w-8 h-8 rounded-xl bg-neutral-800 animate-pulse" />
+                  <div className="flex-1 h-10 rounded-xl bg-neutral-800/70 relative overflow-hidden shimmer" />
+                  <button className="ml-3 px-4 h-10 rounded-xl bg-pink-600/80 hover:bg-pink-600 transition text-sm">Išči</button>
+                </div>
+                <div className="mt-5 space-y-3">
+                  {[0,1,2,3].map((i)=> (
+                    <motion.div key={i} initial={{opacity:0,y:6}} animate={{opacity:1,y:0}} transition={{delay:0.05*i}}
+                      className="h-4 rounded bg-neutral-800/80"/>
+                  ))}
+                </div>
+                <div className="mt-5 grid grid-cols-4 gap-2">
+                  <div className="h-2 rounded bg-emerald-500/80 w-full bar-pulse" />
+                  <div className="h-2 rounded bg-emerald-500/70 w-4/5 bar-pulse" />
+                  <div className="h-2 rounded bg-rose-500/80 w-3/5 bar-pulse" />
+                  <div className="h-2 rounded bg-emerald-500/70 w-4/6 bar-pulse" />
+                </div>
+              </div>
+            </div>
+          </FeatureCard>
+
+          {/* 2) Iskanje po zakonodaji */}
+          <FeatureCard index={1}
+            title="Iskanje po zakonodaji"
+            subtitle="Vedno ažurni členi zakonov"
+            description={(
+              <>
+                Preglej veljavne zakone in predpise iz <span className="underline decoration-sky-400/60 underline-offset-4">PISRS</span>. Hitro najdi člen, ki ga potrebuješ, in prejmi razlago ali povzetek, prilagojen tvojemu primeru.
+              </>
+            )}
+            glow="from-cyan-500/10 via-sky-400/5 to-blue-500/10"
+          >
+            <div className="mt-8">
+              <div className="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4">
+                <div className="grid grid-cols-3 gap-3">
+                  {[0,1,2].map((i)=> (
+                    <motion.div key={i} initial={{opacity:0,y:6}} animate={{opacity:1,y:0}} transition={{delay:0.1*i}}
+                      className="h-28 rounded-xl bg-neutral-800/80 hover:bg-neutral-700/60 transition relative">
+                      <div className="absolute top-3 left-3 h-3 w-14 bg-sky-400/70 rounded" />
+                      <div className="absolute bottom-3 left-3 right-3 h-2 bg-neutral-700 rounded" />
+                    </motion.div>
+                  ))}
+                </div>
+                <div className="mt-4 h-10 rounded-xl bg-neutral-800/70 relative overflow-hidden shimmer" />
+              </div>
+            </div>
+          </FeatureCard>
+
+          {/* 3) Iskanje po pravu EU */}
+          <FeatureCard index={2}
+            title="Iskanje po pravu EU"
+            subtitle="Dostop do evropskega prava na enem mestu"
+            description={(
+              <>Brez zapletenega iskanja po EUR-Lex – z enim klikom do direktiv, uredb in sodb Sodišča EU, ki so ključne za tvoj primer.</>
+            )}
+            glow="from-indigo-500/10 via-violet-500/5 to-fuchsia-500/10"
+          >
+            <div className="mt-8">
+              <div className="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4 space-y-2">
+                {[0,1,2].map((i)=> (
+                  <motion.div key={i} initial={{opacity:0,y:6}} animate={{opacity:1,y:0}} transition={{delay:0.07*i}}
+                    className="h-3 rounded bg-neutral-800/90" />
+                ))}
+                <div className="pt-2 grid grid-cols-5 gap-2">
+                  <div className="h-2 rounded bg-indigo-400/80 bar-pulse" />
+                  <div className="h-2 rounded bg-indigo-400/70 bar-pulse" />
+                  <div className="h-2 rounded bg-indigo-400/60 bar-pulse" />
+                  <div className="h-2 rounded bg-rose-500/80 bar-pulse" />
+                  <div className="h-2 rounded bg-emerald-500/80 bar-pulse" />
+                </div>
+              </div>
+            </div>
+          </FeatureCard>
+
+          {/* 4) Dokument QA */}
+          <FeatureCard index={3}
+            title="Dokument QA"
+            subtitle="Pogovarjaj se s svojimi dokumenti"
+            description={(
+              <>Naloži pogodbo ali pravni dokument in postavljaj vprašanja: “Kje je omejitev odgovornosti?”, “Kaj določa o prenehanju?”. Takoj dobiš jasne odgovore – brez ročnega pregledovanja.</>
+            )}
+            glow="from-emerald-500/10 via-teal-400/5 to-cyan-500/10"
+          >
+            <div className="mt-8">
+              <div className="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-4">
+                <div className="space-y-3">
+                  <motion.div initial={{opacity:0,y:6}} animate={{opacity:1,y:0}} className="max-w-[75%] rounded-2xl bg-neutral-800/80 p-3">
+                    <div className="h-3 w-40 bg-neutral-700 rounded mb-2" />
+                    <div className="h-2 w-24 bg-neutral-700 rounded" />
+                  </motion.div>
+                  <motion.div initial={{opacity:0,y:6}} animate={{opacity:1,y:0}} transition={{delay:0.1}} className="ml-auto max-w-[80%] rounded-2xl bg-emerald-600/80 p-3">
+                    <div className="h-3 w-36 bg-emerald-300/40 rounded mb-2" />
+                    <div className="h-2 w-20 bg-emerald-300/30 rounded" />
+                  </motion.div>
+                  <motion.div initial={{opacity:0,y:6}} animate={{opacity:1,y:0}} transition={{delay:0.2}} className="max-w-[85%] rounded-2xl bg-neutral-800/80 p-3">
+                    <div className="h-3 w-48 bg-neutral-700 rounded mb-2" />
+                    <div className="h-2 w-28 bg-neutral-700 rounded" />
+                  </motion.div>
+                </div>
+
+                <div className="mt-5 rounded-xl border border-emerald-500/40 p-3 relative">
+                  <div className="absolute -top-2 left-4 px-2 text-xs bg-neutral-900 text-emerald-300 rounded">Najdeno v dokumentu</div>
+                  <div className="space-y-2">
+                    <div className="h-3 bg-neutral-800 rounded" />
+                    <div className="h-3 bg-neutral-800 rounded" />
+                    <div className="h-3 bg-emerald-700/60 rounded" />
+                    <div className="h-3 bg-neutral-800 rounded" />
+                  </div>
+                </div>
+              </div>
+            </div>
+          </FeatureCard>
+        </div>
+      </div>
+    </section>
+  );
+}
+
+function FeatureCard({ index, title, subtitle, description, glow, children }:{
+  index: number,
+  title: string,
+  subtitle: string,
+  description: React.ReactNode,
+  glow: string,
+  children: React.ReactNode,
+}){
+  return (
+    <motion.article
+      custom={index}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.2 }}
+      variants={cardVariants}
+      className="group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
+      <div className="absolute inset-0 pointer-events-none\">
+        <div className={`absolute -inset-40 bg-gradient-to-tr ${glow} blur-3xl opacity-0 group-hover:opacity-100 transition`} />
+      </div>
+      <div className="absolute top-3 right-3\">
+        <span className="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black\">Kmalu</span>
+      </div>
+      <div className="p-8\">
+        <h3 className="text-2xl font-semibold">{title}</h3>
+        <p className="text-neutral-300 mt-3">{subtitle}</p>
+        <p className="text-neutral-400 mt-2">{description}</p>
+        {children}
+      </div>
+    </motion.article>
+  );
+}
+
+  
 <!-- ================= /SHOWCASE ================= -->
 
 <!-- VIDEO (dark) -->
