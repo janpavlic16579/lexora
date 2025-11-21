@@ -137,6 +137,13 @@
     .ui-draft-in span:nth-child(4){ animation-delay:.45s }
     .ui-draft-in span:nth-child(5){ animation-delay:.6s }
     @keyframes draftIn{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
+    
+    /* New Animations for Workflow */
+    .flow-beam { position:absolute; top:0; bottom:0; width:40%; background:linear-gradient(90deg, transparent, #f97316, transparent); opacity:0.8; animation: flowBeam 2s cubic-bezier(0.4, 0, 0.2, 1) infinite; }
+    @keyframes flowBeam { 0%{left:-50%;} 100%{left:120%;} }
+    
+    .node-pulse { animation: nodePulse 2.5s ease-in-out infinite; }
+    @keyframes nodePulse { 0%,100%{ transform:scale(1); border-color:rgba(249,115,22,0.3); } 50%{ transform:scale(1.08); border-color:rgba(249,115,22,0.8); box-shadow:0 0 20px rgba(249,115,22,0.25); } }
   </style>
 <script type="importmap">
 {
@@ -365,6 +372,46 @@
         </div>
       </article>
 
+      <!-- 5) AI Workflowi -->
+      <article class="slide-in group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
+        <div class="absolute -inset-40 bg-gradient-to-tr from-orange-500/10 via-amber-500/5 to-yellow-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
+        
+        <div class="p-8 pt-12">
+          <h3 class="text-2xl font-semibold pr-24 leading-tight">AI Workflowi</h3>
+          <p class="text-neutral-200 mt-3 leading-relaxed">Avtomatizacija pravnih procesov</p>
+          <p class="text-neutral-300/90 mt-2 leading-relaxed">
+            Ustvari in prilagodi zaporedja nalog. Poveži iskanje, analizo in generiranje dokumentov v en sam, neprekinjen delovni tok.
+          </p>
+
+          <div class="mt-8">
+            <div class="rounded-2xl bg-neutral-900/70 border border-neutral-800 p-6 relative overflow-hidden">
+              <!-- Connecting Line Background -->
+              <div class="absolute top-1/2 left-10 right-10 h-1 bg-neutral-800 -translate-y-1/2 rounded overflow-hidden">
+                <div class="flow-beam"></div>
+              </div>
+
+              <div class="relative z-10 flex justify-between items-center">
+                <!-- Node 1 -->
+                <div class="w-12 h-12 rounded-xl bg-neutral-800 border border-neutral-700 shadow-lg flex items-center justify-center transition hover:scale-105">
+                  <div class="w-3 h-3 rounded-sm bg-neutral-500"></div>
+                </div>
+                
+                <!-- Node 2 (Active) -->
+                <div class="w-14 h-14 rounded-xl bg-neutral-800 border border-orange-500/40 shadow-[0_0_20px_rgba(249,115,22,0.15)] flex items-center justify-center node-pulse">
+                  <div class="w-5 h-5 rounded bg-gradient-to-br from-orange-400 to-amber-600"></div>
+                </div>
+
+                <!-- Node 3 -->
+                <div class="w-12 h-12 rounded-xl bg-neutral-800 border border-neutral-700 shadow-lg flex items-center justify-center transition hover:scale-105">
+                   <div class="w-3 h-3 rounded-full bg-neutral-500"></div>
+                </div>
+              </div>
+              
+            </div>
+          </div>
+        </div>
+      </article>
+
     </div>
   </div>
 </section>
@@ -438,7 +485,7 @@
           <div class="min-w-full relative group">
              <img src="assets/slideshow2.png" alt="AI Asistent" class="w-full h-auto object-cover block" />
              <div class="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
-               <p class="text-sm md:text-base text-white/90 font-medium">Ustvari nov pravni projekt.</p>
+               <p class="text-sm md:text-base text-white/90 font-medium">Pametni AI asistent za pravna vprašanja</p>
              </div>
           </div>
           
