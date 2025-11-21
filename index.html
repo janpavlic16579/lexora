@@ -138,6 +138,16 @@
     .ui-draft-in span:nth-child(5){ animation-delay:.6s }
     @keyframes draftIn{ from{opacity:0; transform:translateY(6px)} to{opacity:1; transform:none} }
   </style>
+<script type="importmap">
+{
+  "imports": {
+    "react": "https://aistudiocdn.com/react@^19.2.0",
+    "react-dom/": "https://aistudiocdn.com/react-dom@^19.2.0/",
+    "react/": "https://aistudiocdn.com/react@^19.2.0/",
+    "lucide-react": "https://aistudiocdn.com/lucide-react@^0.554.0"
+  }
+}
+</script>
 </head>
 
 <body class="bg-black text-white antialiased">
@@ -149,7 +159,7 @@
 
     <nav class="hidden md:flex items-center gap-8 text-sm text-neutral-300">
       <a class="hover:text-white" href="#showcase">Funkcije</a>
-      <a class="hover:text-white" href="#demo">Video</a>
+      <a class="hover:text-white" href="#demo">Predogled</a>
       <a class="hover:text-white" href="#contact">Povpraševanje</a>
     </nav>
 
@@ -163,7 +173,7 @@
   <div id="mpanel" class="hidden border-t border-white/10 bg-black/90 backdrop-blur">
     <nav class="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-4 text-base text-neutral-200">
       <a href="#showcase">Funkcije</a>
-      <a href="#demo">Video</a>
+      <a href="#demo">Predogled</a>
       <a href="#contact">Povpraševanje</a>
     </nav>
   </div>
@@ -204,15 +214,13 @@
       </p>
     </header>
 
-    <div class="grid grid-cols-1 gap-8">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
 
       <!-- 1) Iskanje po sodni praksi -->
       <article class="slide-in group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
         <!-- ambient glow -->
         <div class="absolute -inset-40 bg-gradient-to-tr from-pink-600/10 via-fuchsia-500/5 to-purple-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
-        <!-- badge -->
-        <div class="absolute top-4 right-4 z-10"><span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span></div>
-
+        
         <div class="p-8 pt-12">
           <h3 class="text-2xl font-semibold pr-24 leading-tight">Iskanje po sodni praksi</h3>
           <p class="text-neutral-200 mt-3 leading-relaxed">Najdi relevantne sodbe v sekundah</p>
@@ -251,8 +259,7 @@
       <!-- 2) Iskanje po zakonodaji -->
       <article class="slide-in group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
         <div class="absolute -inset-40 bg-gradient-to-tr from-cyan-500/10 via-sky-400/5 to-blue-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
-        <div class="absolute top-4 right-4 z-10"><span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span></div>
-
+        
         <div class="p-8 pt-12">
           <h3 class="text-2xl font-semibold pr-24 leading-tight">Iskanje po zakonodaji</h3>
           <p class="text-neutral-200 mt-3 leading-relaxed">Vedno ažurni členi zakonov</p>
@@ -287,8 +294,7 @@
       <!-- 3) Iskanje po pravu EU -->
       <article class="slide-in group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
         <div class="absolute -inset-40 bg-gradient-to-tr from-indigo-500/10 via-violet-500/5 to-fuchsia-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
-        <div class="absolute top-4 right-4 z-10"><span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span></div>
-
+        
         <div class="p-8 pt-12">
           <h3 class="text-2xl font-semibold pr-24 leading-tight">Iskanje po pravu EU</h3>
           <p class="text-neutral-200 mt-3 leading-relaxed">Dostop do evropskega prava na enem mestu</p>
@@ -318,8 +324,7 @@
       <!-- 4) Dokument QA -->
       <article class="slide-in group relative overflow-hidden rounded-3xl bg-neutral-950/70 ring-1 ring-neutral-800 hover:ring-neutral-700 transition">
         <div class="absolute -inset-40 bg-gradient-to-tr from-emerald-500/10 via-teal-400/5 to-cyan-500/10 blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
-        <div class="absolute top-4 right-4 z-10"><span class="soon-badge text-xs font-medium px-3 py-1 rounded-full text-black">Kmalu</span></div>
-
+        
         <div class="p-8 pt-12">
           <h3 class="text-2xl font-semibold pr-24 leading-tight">Dokument QA</h3>
           <p class="text-neutral-200 mt-3 leading-relaxed">Pogovarjaj se s svojimi dokumenti</p>
@@ -408,38 +413,108 @@
   
 <!-- ================= /SHOWCASE ================= -->
 
-<!-- VIDEO (dark) -->
+<!-- SLIDESHOW (Carousel) -->
 <section id="demo" class="bg-black text-white">
   <div class="mx-auto max-w-6xl px-6 py-20">
-    <div class="mx-auto max-w-3xl text-center">
-      <h2 class="font-serif text-3xl md:text-4xl">Demo posnetek</h2>
-      <p class="mt-3 text-neutral-300">Kratek ogled Lexore v realnem poteku dela.</p>
+    <div class="mx-auto max-w-3xl text-center mb-12">
+      <h2 class="font-serif text-3xl md:text-4xl">Predogled platforme</h2>
+      <p class="mt-3 text-neutral-300">Oglejte si Lexoro v akciji: od iskanja do analize.</p>
     </div>
 
-    <div class="mt-10 rounded-2xl border border-white/10 bg-ink-900 shadow-[0_10px_40px_rgba(0,0,0,0.45)] overflow-hidden relative">
-      <div class="pointer-events-none absolute inset-0 opacity-40 [mask-image:radial-gradient(60%_60%_at_50%_30%,black,transparent)] bg-[radial-gradient(50%_50%_at_50%_0%,#ffffff0f,transparent)]"></div>
-
-      <div class="relative">
-        <div class="aspect-video bg-neutral-900">
-          <video class="w-full h-full object-cover" controls playsinline poster="assets/poster.jpg">
-            <source src="assets/lexora-demo.mp4" type="video/mp4"/>
-            <source src="assets/lexora-demo.webm" type="video/webm"/>
-            <source src="assets/lexora-demo.mov" type="video/quicktime"/>
-            Vaš brskalnik ne podpira video oznake.
-          </video>
-        </div>
-
-        <div class="flex items-center justify-between gap-4 border-t border-white/10 bg-black/60 backdrop-blur px-4 py-3">
-          <div class="text-sm">
-            <p class="font-medium">Lexora — kratek pregled</p>
-            <p class="text-neutral-300">1:30 min • raziskave • osnutki • revizija</p>
+    <div class="relative max-w-5xl mx-auto">
+      <!-- Carousel Window -->
+      <div class="overflow-hidden rounded-2xl border border-white/10 shadow-[0_0_40px_rgba(0,0,0,0.5)] bg-neutral-900">
+        <div id="carouselTrack" class="flex transition-transform duration-500 ease-in-out">
+          
+          <!-- SLIDE 1: Dashboard -->
+          <div class="min-w-full relative group">
+             <img src="assets/dashboard.jpg" alt="Glavna nadzorna plošča" class="w-full h-auto object-cover block" />
+             <div class="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+               <p class="text-sm md:text-base text-white/90 font-medium">Glavna nadzorna plošča s hitrimi ukazi</p>
+             </div>
           </div>
-          <a href="#contact" class="btn-demo">Request a Demo</a>
+
+          <!-- SLIDE 2: Welcome Screen -->
+          <div class="min-w-full relative group">
+             <img src="assets/welcome.jpg" alt="AI Asistent" class="w-full h-auto object-cover block" />
+             <div class="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+               <p class="text-sm md:text-base text-white/90 font-medium">Pametni AI asistent za pravna vprašanja</p>
+             </div>
+          </div>
+          
+           <!-- SLIDE 3: Analysis/Results -->
+          <div class="min-w-full relative group">
+             <img src="assets/analysis.jpg" alt="Analiza dokumentov" class="w-full h-auto object-cover block" />
+             <div class="absolute bottom-0 inset-x-0 p-6 bg-gradient-to-t from-black/90 to-transparent">
+               <p class="text-sm md:text-base text-white/90 font-medium">Poglobljena analiza in povzetki dokumentov</p>
+             </div>
+          </div>
+
         </div>
+      </div>
+
+      <!-- Controls -->
+      <button id="prevBtn" class="absolute left-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur text-white border border-white/10 flex items-center justify-center transition hover:scale-110 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"/></svg>
+      </button>
+      <button id="nextBtn" class="absolute right-4 top-1/2 -translate-y-1/2 w-12 h-12 rounded-full bg-black/50 hover:bg-black/80 backdrop-blur text-white border border-white/10 flex items-center justify-center transition hover:scale-110 focus:outline-none">
+        <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7"/></svg>
+      </button>
+
+      <!-- Indicators -->
+      <div class="absolute -bottom-8 left-0 right-0 flex justify-center gap-3">
+        <button class="w-2.5 h-2.5 rounded-full bg-white indicator transition-all" data-index="0"></button>
+        <button class="w-2.5 h-2.5 rounded-full bg-neutral-600 hover:bg-neutral-500 indicator transition-all" data-index="1"></button>
+        <button class="w-2.5 h-2.5 rounded-full bg-neutral-600 hover:bg-neutral-500 indicator transition-all" data-index="2"></button>
       </div>
     </div>
   </div>
 </section>
+
+<script>
+  // Carousel Logic
+  const track = document.getElementById('carouselTrack');
+  const slides = track.children;
+  const prevBtn = document.getElementById('prevBtn');
+  const nextBtn = document.getElementById('nextBtn');
+  const indicators = document.querySelectorAll('.indicator');
+  
+  let currentIndex = 0;
+  const totalSlides = slides.length;
+
+  function updateCarousel() {
+    const offset = -(currentIndex * 100);
+    track.style.transform = `translateX(${offset}%)`;
+    
+    // update dots
+    indicators.forEach((dot, idx) => {
+      if(idx === currentIndex) {
+        dot.classList.remove('bg-neutral-600', 'hover:bg-neutral-500');
+        dot.classList.add('bg-white', 'scale-110');
+      } else {
+        dot.classList.add('bg-neutral-600', 'hover:bg-neutral-500');
+        dot.classList.remove('bg-white', 'scale-110');
+      }
+    });
+  }
+
+  nextBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex + 1) % totalSlides;
+    updateCarousel();
+  });
+
+  prevBtn.addEventListener('click', () => {
+    currentIndex = (currentIndex - 1 + totalSlides) % totalSlides;
+    updateCarousel();
+  });
+
+  indicators.forEach(dot => {
+    dot.addEventListener('click', (e) => {
+      currentIndex = parseInt(e.target.dataset.index);
+      updateCarousel();
+    });
+  });
+</script>
 
 <!-- POVPRAŠEVANJE (dark) -->
 <section id="contact" class="bg-black text-white py-20 font-sans">
@@ -547,7 +622,7 @@
       <p class="font-serif text-xl text-white">Lexora</p>
       <nav class="flex flex-wrap gap-x-6 gap-y-3 text-sm">
         <a class="hover:text-white" href="#showcase">Funkcije</a>
-        <a class="hover:text-white" href="#demo">Video</a>
+        <a class="hover:text-white" href="#demo">Predogled</a>
         <a class="hover:text-white" href="#contact">Povpraševanje</a>
       </nav>
     </div>
