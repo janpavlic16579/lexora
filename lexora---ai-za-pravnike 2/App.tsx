@@ -162,15 +162,14 @@ const App: React.FC = () => {
             </div>
 
             <div className="flex items-center gap-4 text-xs font-medium text-neutral-500 uppercase tracking-wider">
-              <span>Zaupajo nam:</span>
+              <span>Narejena za slovenske pravnike 🇸🇮</span>
               <div className="flex -space-x-3">
                    <div className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center text-[10px] text-neutral-400">P</div>
                    <div className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center text-[10px] text-neutral-400">J</div>
                    <div className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center text-[10px] text-neutral-400">L</div>
               </div>
-              <span>50+ Pisarn</span>
             </div>
-          </div>
+
 
           {/* RIGHT: VISUAL UI INTERFACE (3D CARD) */}
           <div className="relative hidden lg:block perspective-1000 h-[500px] w-full">
