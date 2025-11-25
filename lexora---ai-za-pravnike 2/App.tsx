@@ -1,3 +1,4 @@
+
 import React, { useState, useEffect } from 'react';
 import { Menu, X, CheckCircle, Search, FileText, Globe, MessageSquare, GitMerge, ChevronRight, ChevronLeft, Database, Star } from 'lucide-react';
 
@@ -139,7 +140,7 @@ const App: React.FC = () => {
                 <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-blue-400 opacity-75"></span>
                 <span className="relative inline-flex rounded-full h-2 w-2 bg-blue-500"></span>
               </span>
-              <span className="font-sans text-xs font-semibold text-blue-300 tracking-wide uppercase">AI Platforma v2.0</span>
+              <span className="font-sans text-xs font-semibold text-blue-300 tracking-wide uppercase">AI workspace za pravnike</span>
             </div>
 
             <h1 className="font-serif text-5xl sm:text-6xl md:text-7xl leading-[1.1] tracking-tight mb-6 text-white">
@@ -148,16 +149,16 @@ const App: React.FC = () => {
             </h1>
 
             <p className="font-sans text-lg text-neutral-400 max-w-xl mb-8 leading-relaxed">
-              Lexora ni le iskalnik. Je vaš AI partner, ki v sekundah <span className="text-blue-300 font-medium">analizira sodbe</span>, pripravlja osnutke in preverja zakonodajo.
+              Vstopi v novo generacijo pravnikov in <span className="text-blue-300 font-medium">revolucioniraj svojo prakso</span> z umetno inteligenco.
             </p>
 
             <div className="flex flex-wrap items-center gap-4 mb-10">
               <a href="#contact" className="btn-demo group relative overflow-hidden shadow-[0_0_30px_rgba(37,99,235,0.2)] text-white px-6 py-3.5 rounded-lg font-semibold transition hover:-translate-y-0.5">
-                <span className="relative z-10">Začni brezplačno</span>
+                <span className="relative z-10">Zanima me!</span>
               </a>
               <a href="#demo" className="px-6 py-3.5 rounded-lg text-sm font-medium text-neutral-300 hover:text-white border border-white/10 hover:border-white/20 hover:bg-white/5 transition-all flex items-center gap-2">
                 <svg width="18" height="18" viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round"><polygon points="5 3 19 12 5 21 5 3"></polygon></svg>
-                Poglej kako deluje
+                Oglej si Platformo
               </a>
             </div>
 
@@ -169,7 +170,7 @@ const App: React.FC = () => {
                    <div className="w-8 h-8 rounded-full bg-neutral-800 border border-neutral-700 flex items-center justify-center text-[10px] text-neutral-400">L</div>
               </div>
             </div>
-
+          </div>
 
           {/* RIGHT: VISUAL UI INTERFACE (3D CARD) */}
           <div className="relative hidden lg:block perspective-1000 h-[500px] w-full">
@@ -272,52 +273,37 @@ const App: React.FC = () => {
 
           <div className="grid grid-cols-1 md:grid-cols-2 gap-8">
 
-            {/* 1. SODNA PRAKSA (Enhanced: Database Match) */}
+            {/* 1. DOKUMENT QA (Swapped to 1st) */}
             <article className="group relative overflow-hidden rounded-3xl bg-neutral-900/50 ring-1 ring-white/10 hover:ring-blue-500/40 transition duration-500">
-              <div className="absolute -inset-40 bg-gradient-to-tr from-blue-600/10 via-blue-500/5 to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
+              <div className="absolute -inset-40 bg-gradient-to-tr from-blue-500/10 via-teal-400/5 to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
               
               <div className="p-8 pt-12">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
-                    <Search className="text-blue-400" size={24} />
-                  </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/20 uppercase tracking-wide">Kmalu</span>
+                <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-6">
+                  <MessageSquare className="text-blue-400" size={24} />
                 </div>
-
-                <h3 className="text-2xl font-semibold pr-4 leading-tight">Iskanje po sodni praksi</h3>
+                <h3 className="text-2xl font-semibold pr-24 leading-tight">Dokument QA</h3>
                 <p className="text-neutral-400 mt-2 leading-relaxed">
-                  Neposreden dostop do baze slovenskih sodb z uporabo naravnega jezika.
+                  Pogovarjaj se s svojimi dokumenti in pridobi takojšnje odgovore.
                 </p>
 
-                {/* ANIMATION CONTAINER: SCROLLING DB */}
-                <div className="mt-8 rounded-2xl bg-black/40 border border-neutral-800 p-4 relative overflow-hidden h-48 flex flex-col justify-center">
-                   {/* Background scrolling code */}
-                   <div className="absolute inset-0 opacity-20 flex flex-col gap-2 p-4 animate-scroll-up pointer-events-none font-mono text-[10px] text-neutral-400">
-                      {[...Array(10)].map((_, i) => (
-                        <div key={i} className="flex gap-2">
-                           <span className="text-blue-700">ID_{1000+i}</span>
-                           <span>VS RS Sodba II Ips {200+i}/2023...</span>
-                        </div>
-                      ))}
-                      {[...Array(10)].map((_, i) => (
-                        <div key={`d-${i}`} className="flex gap-2">
-                           <span className="text-blue-700">ID_{1000+i}</span>
-                           <span>VS RS Sodba II Ips {200+i}/2023...</span>
-                        </div>
-                      ))}
+                {/* ANIMATION CONTAINER: CHAT */}
+                <div className="mt-8 rounded-2xl bg-black/40 border border-neutral-800 p-4 relative overflow-hidden h-48 flex flex-col justify-end space-y-4">
+                   {/* User Message */}
+                   <div className="self-end max-w-[80%] p-3 rounded-2xl rounded-tr-none bg-blue-600 text-xs text-white shadow-lg">
+                      Povzetek 5. člena?
                    </div>
                    
-                   {/* Foreground "Found" Card */}
-                   <div className="relative z-10 bg-neutral-800/90 backdrop-blur border border-blue-500/30 p-3 rounded-lg shadow-2xl shadow-blue-900/20 transform group-hover:scale-105 transition duration-500">
-                      <div className="flex items-center gap-2 mb-2 border-b border-white/5 pb-2">
-                         <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
-                         <span className="text-xs font-semibold text-white">Najdena precedenčna sodba</span>
-                      </div>
-                      <div className="space-y-1.5">
-                         <div className="h-1.5 w-full bg-neutral-700 rounded-full"></div>
-                         <div className="h-1.5 w-3/4 bg-neutral-700 rounded-full"></div>
-                         <div className="flex items-center gap-2 mt-2">
-                            <span className="text-[10px] px-1.5 py-0.5 bg-blue-500/20 text-blue-300 rounded">98% ujemanje</span>
+                   {/* Result Card (Now relative and stacked to prevent overlap) */}
+                   <div className="relative bg-neutral-800/95 backdrop-blur border border-green-500/30 p-3 rounded-xl shadow-xl animate-[pulse_3s_ease-in-out_infinite]">
+                      <div className="flex items-start gap-3">
+                         <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
+                            <CheckCircle size={14} className="text-green-400" />
+                         </div>
+                         <div className="space-y-1">
+                            <p className="text-[10px] text-green-400 font-bold uppercase">Odgovor</p>
+                            <p className="text-xs text-neutral-300 leading-snug">
+                               5. člen določa <span className="text-white font-medium bg-white/10 px-1 rounded">30-dnevni rok</span> za pritožbo.
+                            </p>
                          </div>
                       </div>
                    </div>
@@ -382,17 +368,17 @@ const App: React.FC = () => {
               <div className="absolute -inset-40 bg-gradient-to-tr from-indigo-500/10 via-blue-500/5 to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
               
               <div className="p-8 pt-12">
-                <div className="flex items-center justify-between mb-6">
-                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
+                <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-6">
                     <Globe className="text-blue-400" size={24} />
-                  </div>
-                  <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/20 uppercase tracking-wide">Kmalu</span>
                 </div>
                 
                 <h3 className="text-2xl font-semibold pr-4 leading-tight">Iskanje po pravu EU</h3>
                 <p className="text-neutral-400 mt-2 leading-relaxed">
                   Povezava z EUR-Lex direktivami, uredbami in sodbami.
                 </p>
+                <div className="mt-4">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/20 uppercase tracking-wide">Kmalu</span>
+                </div>
 
                 {/* ANIMATION CONTAINER: EU STARS CONNECTION */}
                 <div className="mt-8 rounded-2xl bg-black/40 border border-neutral-800 relative overflow-hidden h-48 flex items-center justify-center">
@@ -443,37 +429,52 @@ const App: React.FC = () => {
               </div>
             </article>
 
-            {/* 4. DOKUMENT QA (Enhanced: Chat Card Slide - FIXED OVERLAP) */}
+            {/* 4. SODNA PRAKSA (Swapped to 4th) */}
             <article className="group relative overflow-hidden rounded-3xl bg-neutral-900/50 ring-1 ring-white/10 hover:ring-blue-500/40 transition duration-500">
-              <div className="absolute -inset-40 bg-gradient-to-tr from-blue-500/10 via-teal-400/5 to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
+              <div className="absolute -inset-40 bg-gradient-to-tr from-blue-600/10 via-blue-500/5 to-transparent blur-3xl opacity-0 group-hover:opacity-100 transition pointer-events-none"></div>
               
               <div className="p-8 pt-12">
                 <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-6">
-                  <MessageSquare className="text-blue-400" size={24} />
+                    <Search className="text-blue-400" size={24} />
                 </div>
-                <h3 className="text-2xl font-semibold pr-24 leading-tight">Dokument QA</h3>
-                <p className="text-neutral-400 mt-2 leading-relaxed">
-                  Pogovarjaj se s svojimi dokumenti in pridobi takojšnje odgovore.
-                </p>
 
-                {/* ANIMATION CONTAINER: CHAT */}
-                <div className="mt-8 rounded-2xl bg-black/40 border border-neutral-800 p-4 relative overflow-hidden h-48 flex flex-col justify-end space-y-4">
-                   {/* User Message */}
-                   <div className="self-end max-w-[80%] p-3 rounded-2xl rounded-tr-none bg-blue-600 text-xs text-white shadow-lg">
-                      Povzetek 5. člena?
+                <h3 className="text-2xl font-semibold pr-4 leading-tight">Iskanje po sodni praksi</h3>
+                <p className="text-neutral-400 mt-2 leading-relaxed">
+                  Neposreden dostop do baze slovenskih sodb z uporabo naravnega jezika.
+                </p>
+                <div className="mt-4">
+                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/20 uppercase tracking-wide">Kmalu</span>
+                </div>
+
+                {/* ANIMATION CONTAINER: SCROLLING DB */}
+                <div className="mt-8 rounded-2xl bg-black/40 border border-neutral-800 p-4 relative overflow-hidden h-48 flex flex-col justify-center">
+                   {/* Background scrolling code */}
+                   <div className="absolute inset-0 opacity-20 flex flex-col gap-2 p-4 animate-scroll-up pointer-events-none font-mono text-[10px] text-neutral-400">
+                      {[...Array(10)].map((_, i) => (
+                        <div key={i} className="flex gap-2">
+                           <span className="text-blue-700">ID_{1000+i}</span>
+                           <span>VS RS Sodba II Ips {200+i}/2023...</span>
+                        </div>
+                      ))}
+                      {[...Array(10)].map((_, i) => (
+                        <div key={`d-${i}`} className="flex gap-2">
+                           <span className="text-blue-700">ID_{1000+i}</span>
+                           <span>VS RS Sodba II Ips {200+i}/2023...</span>
+                        </div>
+                      ))}
                    </div>
                    
-                   {/* Result Card (Now relative and stacked to prevent overlap) */}
-                   <div className="relative bg-neutral-800/95 backdrop-blur border border-green-500/30 p-3 rounded-xl shadow-xl animate-[pulse_3s_ease-in-out_infinite]">
-                      <div className="flex items-start gap-3">
-                         <div className="w-6 h-6 rounded-full bg-green-500/20 flex items-center justify-center shrink-0 mt-0.5">
-                            <CheckCircle size={14} className="text-green-400" />
-                         </div>
-                         <div className="space-y-1">
-                            <p className="text-[10px] text-green-400 font-bold uppercase">Odgovor</p>
-                            <p className="text-xs text-neutral-300 leading-snug">
-                               5. člen določa <span className="text-white font-medium bg-white/10 px-1 rounded">30-dnevni rok</span> za pritožbo.
-                            </p>
+                   {/* Foreground "Found" Card */}
+                   <div className="relative z-10 bg-neutral-800/90 backdrop-blur border border-blue-500/30 p-3 rounded-lg shadow-2xl shadow-blue-900/20 transform group-hover:scale-105 transition duration-500">
+                      <div className="flex items-center gap-2 mb-2 border-b border-white/5 pb-2">
+                         <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+                         <span className="text-xs font-semibold text-white">Najdena precedenčna sodba</span>
+                      </div>
+                      <div className="space-y-1.5">
+                         <div className="h-1.5 w-full bg-neutral-700 rounded-full"></div>
+                         <div className="h-1.5 w-3/4 bg-neutral-700 rounded-full"></div>
+                         <div className="flex items-center gap-2 mt-2">
+                            <span className="text-[10px] px-1.5 py-0.5 bg-blue-500/20 text-blue-300 rounded">98% ujemanje</span>
                          </div>
                       </div>
                    </div>
@@ -487,17 +488,17 @@ const App: React.FC = () => {
               
               <div className="p-8 pt-12 flex flex-col md:flex-row items-center gap-8">
                 <div className="flex-1">
-                  <div className="flex items-center justify-between md:justify-start gap-4 mb-6">
-                    <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center">
+                  <div className="w-12 h-12 rounded-xl bg-blue-500/10 flex items-center justify-center mb-6">
                         <GitMerge className="text-blue-400" size={24} />
-                    </div>
-                    <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/20 uppercase tracking-wide">Kmalu</span>
                   </div>
                   
                   <h3 className="text-2xl font-semibold leading-tight">AI Workflowi</h3>
                   <p className="text-neutral-400 mt-2 leading-relaxed">
                     Avtomatizirajte kompleksne procese z zaporedjem AI nalog. Od iskanja do priprave končnega dokumenta.
                   </p>
+                  <div className="mt-4">
+                     <span className="px-2 py-0.5 rounded text-[10px] font-bold bg-blue-500/20 text-blue-300 border border-blue-500/20 uppercase tracking-wide">Kmalu</span>
+                  </div>
                 </div>
 
                 {/* ANIMATION CONTAINER: PIPELINE */}
@@ -735,3 +736,4 @@ const App: React.FC = () => {
 };
 
 export default App;
+
