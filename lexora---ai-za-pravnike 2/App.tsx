@@ -115,7 +115,7 @@ const App: React.FC = () => {
         {isMenuOpen && (
           <div className="border-t border-white/10 bg-neutral-950/90 backdrop-blur md:hidden">
             <nav className="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-4 text-base text-neutral-200">
-              <a href="#showcase" onClick={() => setIsMenuOpen(false)}>Funkcije.</a>
+              <a href="#showcase" onClick={() => setIsMenuOpen(false)}>Funkcije..</a>
               <a href="#demo" onClick={() => setIsMenuOpen(false)}>Predogled</a>
               <a href="#contact" onClick={() => setIsMenuOpen(false)}>Povpraševanje</a>
             </nav>
