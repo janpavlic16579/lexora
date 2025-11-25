@@ -24,12 +24,12 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: 22
+          node-version: 20
           cache: npm
           cache-dependency-path: "lexora---ai-za-pravnike 2/package-lock.json"
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install
         working-directory: "lexora---ai-za-pravnike 2"
 
       - name: Build site
