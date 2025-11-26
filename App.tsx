@@ -93,7 +93,7 @@ const App: React.FC = () => {
           <a className="font-serif text-2xl tracking-tight text-white hover:text-blue-100 transition" href="#">Lexora</a>
 
           <nav className="hidden md:flex items-center gap-8 text-sm text-neutral-300">
-            <a className="hover:text-white transition-colors" href="#showcase">Funkcije..</a>
+            <a className="hover:text-white transition-colors" href="#showcase">Funkcije</a>
             <a className="hover:text-white transition-colors" href="#demo">Predogled</a>
             <a className="hover:text-white transition-colors" href="#contact">Povpraševanje</a>
           </nav>
@@ -115,7 +115,7 @@ const App: React.FC = () => {
         {isMenuOpen && (
           <div className="border-t border-white/10 bg-neutral-950/90 backdrop-blur md:hidden">
             <nav className="mx-auto max-w-7xl px-4 py-4 flex flex-col gap-4 text-base text-neutral-200">
-              <a href="#showcase" onClick={() => setIsMenuOpen(false)}>Funkcije!</a>
+              <a href="#showcase" onClick={() => setIsMenuOpen(false)}>Funkcije</a>
               <a href="#demo" onClick={() => setIsMenuOpen(false)}>Predogled</a>
               <a href="#contact" onClick={() => setIsMenuOpen(false)}>Povpraševanje</a>
             </nav>
@@ -736,4 +736,5 @@ const App: React.FC = () => {
 };
 
 export default App;
+
 
