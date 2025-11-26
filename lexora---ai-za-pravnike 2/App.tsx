@@ -93,7 +93,7 @@ const App: React.FC = () => {
           <a className="font-serif text-2xl tracking-tight text-white hover:text-blue-100 transition" href="#">Lexora</a>
 
           <nav className="hidden md:flex items-center gap-8 text-sm text-neutral-300">
-            <a className="hover:text-white transition-colors" href="#showcase">Funkcije</a>
+            <a className="hover:text-white transition-colors" href="#showcase">Funkcije..</a>
             <a className="hover:text-white transition-colors" href="#demo">Predogled</a>
             <a className="hover:text-white transition-colors" href="#contact">Povpraševanje</a>
           </nav>
