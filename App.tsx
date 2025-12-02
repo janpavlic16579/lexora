@@ -6,14 +6,18 @@ const App: React.FC = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [currentSlide, setCurrentSlide] = useState(0);
   
-  // Contact Form State
-  const [formData, setFormData] = useState({
-    name: '',
-    email: '',
-    phone: '',
-    message: ''
-  });
+   // Contact Form State
+const [formData, setFormData] = useState({
+  name: '',
+  company: '',   // 👈 NOVO
+  email: '',
+  phone: '',
+  message: ''
+});
   const [formStatus, setFormStatus] = useState<'idle' | 'submitting' | 'success' | 'error'>('idle');
+
+
+
 
   // Slideshow data
   const slides = [
@@ -621,6 +625,22 @@ const App: React.FC = () => {
                 className="mt-1 block w-full rounded-md bg-neutral-900 border border-neutral-700 text-white placeholder-neutral-500 p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
               />
             </div>
+
+            <div>
+          <label htmlFor="company" className="block text-sm font-medium text-neutral-300">
+                Podjetje
+              </label>
+              <input
+                type="text"
+                id="company"
+                name="company"
+                value={formData.company}
+                onChange={handleInputChange}
+                className="mt-1 block w-full rounded-md bg-neutral-900 border border-neutral-700 text-white placeholder-neutral-500 p-3 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition"
+                placeholder="Lexora d.o.o."
+              />
+          </div>
+
 
             <div>
               <label htmlFor="email" className="block text-sm font-medium text-neutral-300">E-pošta</label>
