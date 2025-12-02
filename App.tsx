@@ -610,7 +610,8 @@ const [formData, setFormData] = useState({
             Izpolnite spodnji obrazec in kontaktirali vas bomo v najkrajšem možnem času.
           </p>
 
-          <form onSubmit={handleSubmit} className="space-y-6">
+          <form onSubmit={handleSubmit} className="space-y-6"> 
+            
             <div>
               <label htmlFor="name" className="block text-sm font-medium text-neutral-300">Ime in priimek</label>
               <input 
